@@ -1,0 +1,19 @@
+{
+  "name": "master-slave-control",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:webserver": "node webserver",
+    "start:master": "node master",
+    "start:slave": "node slave"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "fs-extra": "^11.3.2",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  }
+}
