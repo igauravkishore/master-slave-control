@@ -1,214 +1,240 @@
-/**
- * @title                       - MasterNode.js
- * @Architecture                - Connects to the Webserver via Socket.IO to forward data from Slaves.
- *                                - Listens for Slave connections, waits for them to identify, and sends them their specific configuration.
- * @description                 - This is the Master node that connects to the Webserver and listens for Slave nodes.
- *                              - It waits for Slaves to identify themselves and then sends them their specific configuration from a file.
- * @author                      - Gaurav Kishore
- * @date                        - 14-10-2025
- */
-
+const { io } = require('socket.io-client');
 const { Server } = require('socket.io');
-const { io: ioClient } = require('socket.io-client');
 const fs = require('fs');
 const path = require('path');
 
-/**
- * @constant {string} WEB_SERVER_URL - The URL of the Webserver to connect to.
- * @constant {number} SLAVE_LISTENING_PORT - The port on which the Master listens for Slave connections.
- * @constant {string} CONFIG_FILE_PATH - The path to the JSON configuration file containing Slave configurations.
- * @author                      - Gaurav Kishore
- * @date                        - 14-10-2025
- */
-const WEB_SERVER_URL = 'http://localhost:3000/master';
-const SLAVE_LISTENING_PORT = 4000;
-const CONFIG_FILE_PATH = path.join(__dirname, 'master_config.json');
-
 
 /**
- * @description                   - Holds the active Webserver socket connection.
- *                                  - Maps connected Slaves by their self-reported ID to their socket connections.
- *                                    - Debounce timer for config file watcher to prevent multiple rapid reloads.
- * @author                        - Gaurav Kishore
- * @date                          - 14-10-2025
+ * @Class                       			- MasterNode
+ * @extends						     			- none
+ * @param {string} strWebserverUrl  	- The URL of the Webserver to connect to.
+ * @param {number} nSlavePort       	- The port number on which to listen for Slave connections.
+ * @param {string} strConfigFilePath 	- Path to the master configuration file.
+ * @constructor
+ * @description                 			- This is the Master node that connects to the Webserver and listens for Slave nodes.
+ *                              				- It waits for Slaves to identify themselves and then sends them their specific configuration from a file.
+ * @author                      			- Gaurav Kishore
+ * @date                        			- 15-10-2025
  */
-let webserverSocket;
-// *** IMPORTANT: Map now stores sockets by their self-reported ID, not connection IP ***
-/**
- * @type {Map<string, Socket>}    - Maps Slave IDs to their corresponding socket connections.
- * @description                   - This allows the Master to send configuration to the correct Slave after it identifies itself.
- * @author                        - Gaurav Kishore
- * @date                          - 14-10-2025
- */
-const connectedSlaves = new Map(); 
-let configWatcherDebounce = null;
 
-// 1. Connect to the main webserver (No changes here)
-/**
- * @method                        - connectToWebServer
- * @parameter                     - None
- * @returns                       - None
- * @description                   - Establishes a Socket.IO connection to the Webserver.
- *                                  - Sets up event handlers for connection success, disconnection, and errors.
- * @author                        - Gaurav Kishore
- * @date                          - 14-10-2025
- */
-function connectToWebServer() {
-  console.log('[Master] Attempting to connect to Webserver...');
-  webserverSocket = ioClient(WEB_SERVER_URL);
-  webserverSocket.on('connect', () => console.log('[Master] Successfully connected to Webserver.'));
-  webserverSocket.on('disconnect', () => console.error('[Master] Disconnected from Webserver.'));
-  webserverSocket.on('connect_error', (err) => console.error(`[Master] Could not connect to Webserver: ${err.message}. Retrying...`));
+function MasterNode(strWebserverUrl, nSlavePort, strConfigFilePath) {
+	let self = this;
+    self._strWebserverUrl = strWebserverUrl;
+    self._nSlavePort = nSlavePort;
+    self._strConfigFilePath = strConfigFilePath;
+
+    self._config = {};
+    self._connectedSlaves = new Map(); // Stores slaves by their self-identified ID.
+
+
+    // Client to connect to the Webserver
+    self._webserverSocket = io(strWebserverUrl, {
+        query: { type: 'master' }
+    });
+
+    // Server to listen for Slaves
+    self._slaveServer = new Server(nSlavePort, {
+        cors: { origin: "*" }
+    });
+
+    console.log('[Master] Initialized.');
 }
 
-// 2. Create a server for slaves to connect to
 /**
- * @method                        - listenForSlaves
- * @parameter                     - None
- * @returns                       - None
- * @description                   - Sets up a Socket.IO server to listen for Slave connections.
- *                                  - Waits for each Slave to identify itself before sending its specific configuration.
- *                                   - Forwards any received data or health status from Slaves to the Webserver.
- *                                    - Handles Slave disconnections and cleans up state.
- * @author                        - Gaurav Kishore
- * @date                          - 14-10-2025
+ * @method									- start
+ * @param									- none
+ * @returns									- none
+ * @summary									- Starts the Master Node operations including connecting to the Webserver and listening for Slaves.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
  */
-function listenForSlaves() {
-  const slaveServer = new Server(SLAVE_LISTENING_PORT, { cors: { origin: '*' } });
-  console.log(`[Master] Listening for Slaves on port ${SLAVE_LISTENING_PORT}`);
+MasterNode.prototype.start = function() {
+	let self = this;
+   //  self.connectToWebServer();
+    self.listenForSlaves();
+    self.watchConfigFile(); // Load config initially and then watch for changes
+};
 
-  slaveServer.on('connection', (socket) => {
-    const slaveIp = socket.handshake.address; 
-    console.log(`[Master] A slave connected from address: ${slaveIp}. Waiting for identification...`);
 
-    // ***Wait for the slave to identify itself ***
-    socket.on('identify', (data) => {
-        const slaveId = data.id;
-        console.log(`[Master] Slave identified as: ${slaveId}`);
-        connectedSlaves.set(slaveId, socket);
+/**
+ * @method									- connectToWebServer
+ * @param									- none
+ * @returns									- none
+ * @summary									- Establishes the connection to the Webserver and sets up necessary listeners.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
+ */
+MasterNode.prototype.connectToWebServer = function() {
+	let self = this;
+    self._webserverSocket.on('connection', (socket) => {
+        console.log(`[Master] Connected to Webserver at ${self._strWebserverUrl} ${socket.id}`);
 
-        // Now that we know who it is, send its specific config
-        sendConfigToSlave(slaveId);
+    });
+    self._webserverSocket.on('disconnect', (socket) => {
+        console.log(`[Master] Disconnected from Webserver. ${socket.id}`);
+    });
+    self._webserverSocket.on('connect_error', (err) => {
+        console.error(`[Master] Could not connect to Webserver: ${err.message}`);
+    });
+};
+
+
+/**
+ * @method									- listenForSlaves
+ * @param									- none
+ * @returns									- none
+ * @summary									- Starts the server to listen for incoming Slave connections.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
+ */
+MasterNode.prototype.listenForSlaves = function() {
+	let self = this;
+    console.log(`[Master] Listening for slaves on port ${self._nSlavePort}`);
+    self._slaveServer.on('connection', self.handleSlaveConnection.bind(self));
+};
+
+
+/**
+ * @method									- handleSlaveConnection
+ * @param {object} socket				- The socket object representing the connected Slave.
+ * @returns									- none
+ * @summary									- Handles a new Slave connection, sets up listeners for identification and data forwarding.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
+ */
+MasterNode.prototype.handleSlaveConnection = function(socket) {
+    let self = this;
+    let slaveId = null; // To be set upon identification
+
+    console.log('[Master] A new slave is attempting to connect...');
+
+    socket.on('identify', function(identity) {
+        slaveId = identity.id;
+        self._connectedSlaves.set(slaveId, socket);
+        console.log(`[Master] Slave identified as ${slaveId} and is now connected.`);
+        self.sendConfigToSlave(slaveId); // Send config immediately upon identification
     });
 
-    socket.on('sensor-data', (data) => {
-      if (webserverSocket && webserverSocket.connected) {
-        webserverSocket.emit('forward-data', { type: 'data', payload: data });
-      }
+    socket.on('sensor-data', function(data) {
+        // Forward data to the webserver to be displayed on the UI
+        if (self._webserverSocket.connected) {
+            self._webserverSocket.emit('forward-to-ui', data);
+        }
     });
-
-    socket.on('health-status', (data) => {
-        if (webserverSocket && webserverSocket.connected) {
-            webserverSocket.emit('forward-data', { type: 'health', payload: data });
+    
+    socket.on('health-status', function(data) {
+        if (self._webserverSocket.connected) {
+            self._webserverSocket.emit('forward-to-ui', data);
         }
     });
 
-    socket.on('disconnect', () => {
-      // Find which slave this was and remove it
-      let disconnectedId = null;
-      for (const [id, s] of connectedSlaves.entries()) {
-          if (s === socket) {
-              disconnectedId = id;
-              break;
-          }
-      }
-
-      if (disconnectedId) {
-          console.log(`[Master] Slave ${disconnectedId} disconnected.`);
-          connectedSlaves.delete(disconnectedId);
-          if (webserverSocket && webserverSocket.connected) {
-              webserverSocket.emit('forward-data', { 
-                  type: 'health', 
-                  payload: { slaveIp: disconnectedId, status: 'offline' } 
-              });
-          }
-      }
+    socket.on('disconnect', function() {
+        if (slaveId) {
+            self._connectedSlaves.delete(slaveId);
+            console.log(`[Master] Slave ${slaveId} disconnected.`);
+            // Notify UI that this slave is offline
+            self._webserverSocket.emit('forward-to-ui', { slaveIp: slaveId, status: 'offline' });
+        }
     });
-  });
-}
+};
 
 
-// 3. Load config and send it to ONE specific slave
+
 /**
- * @method                        - sendConfigToSlave
- * @param {string} slaveId        - The ID of the Slave to send configuration to.
- * @returns                       - None
- * @description                   - Reads the configuration file and extracts the specific configuration for the given Slave ID.
- *                                 - Sends the configuration to the Slave via its socket connection.
- * @author                        - Gaurav Kishore
- * @date                          - 14-10-2025
+ * @method									- loadConfig
+ * @param									- none
+ * @returns {boolean}					- True if config loaded successfully, false otherwise.
+ * @summary									- Loads the master configuration file from disk.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
  */
-function sendConfigToSlave(slaveId) {
-    console.log(`[Master] Looking up config for slave: ${slaveId}`);
+MasterNode.prototype.loadConfig = function() {
+	let self = this;
     try {
-        const rawData = fs.readFileSync(CONFIG_FILE_PATH);
-        const configData = JSON.parse(rawData);
-
-        if (!configData.config || !Array.isArray(configData.config)) {
-            console.error('[Master] Config file is missing "config" array.');
-            return;
-        }
-
-        // Find the specific configuration for the slave that just connected
-        const slaveConfig = configData.config.find(c => c.slaveIp === slaveId);
-        
-        if (slaveConfig) {
-            const slaveSocket = connectedSlaves.get(slaveId);
-            if (slaveSocket) {
-                slaveSocket.emit('config', slaveConfig);
-                console.log(`[Master] Sent config to ${slaveId}:`, slaveConfig.handlers);
-            }
-        } else {
-            console.warn(`[Master] No configuration found for slave ID: ${slaveId}`);
-        }
-
+        const rawData = fs.readFileSync(self._strConfigFilePath);
+        self._config = JSON.parse(rawData);
+        console.log('[Master] Configuration loaded successfully.');
+        return true;
     } catch (err) {
-        console.error(`[Master] Error reading or parsing config file: ${err.message}`);
+        console.error(`[Master] Error loading config file: ${err.message}`);
+        return false;
     }
-}
+};
 
-// 4. Function to reload and distribute config to ALL connected slaves (used by file watcher)
+
 /**
- * @method                        - loadAndDistributeConfigToAll
- * @parameter                     - None
- * @returns                       - None
- * @description                   - Reads the configuration file and sends updated configurations to all currently connected Slaves.
- * @author                        - Gaurav Kishore
- * @date                          - 14-10-2025
+ * @method									- sendConfigToSlave
+ * @param {string} slaveId				- The ID of the slave to send the configuration to.
+ * @returns									- none
+ * @summary									- Sends the specific configuration to the identified Slave.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
  */
-function loadAndDistributeConfigToAll() {
-    console.log('[Master] Reloading config for all connected slaves...');
-    // Simply iterate over all currently connected slaves and send them their updated config
-    for (const slaveId of connectedSlaves.keys()) {
-        sendConfigToSlave(slaveId);
+MasterNode.prototype.sendConfigToSlave = function(slaveId) {
+	let self = this;
+    const slaveSocket = self._connectedSlaves.get(slaveId);
+    const slaveConfig = self._config.config.find(c => c.slaveIp === slaveId);
+
+    if (slaveSocket && slaveConfig) {
+        slaveSocket.emit('config', slaveConfig);
+        console.log(`[Master] Sent config to ${slaveId}:`, slaveConfig);
+    } else {
+        console.log(`[Master] No configuration found for slave ID: ${slaveId}`);
     }
-}
+};
 
-// 5. Watch the config file for any changes
+
 /**
- * @method                        - watchConfigFile
- * @parameter                     - None
- * @returns                       - None
- * @description                   - Sets up a file watcher on the configuration file.
- *                                 - On detecting changes, it reloads the configuration and distributes updates to all connected Slaves.
- *                                 - Uses a debounce mechanism to prevent multiple rapid reloads.
- * @author                        - Gaurav Kishore
- * @date                          - 14-10-2025
+ * @method									- sendControlToSlave
+ * @param {string} slaveId				- The ID of the slave to send the control command to.
+ * @param {string} action				- The control action to send (e.g., 'start', 'stop').
+ * @returns									- none
+ * @summary									- Sends a control command to the specified Slave.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025 
  */
-function watchConfigFile() {
-    fs.watch(CONFIG_FILE_PATH, (eventType, filename) => {
-        if (filename) {
-            clearTimeout(configWatcherDebounce);
-            configWatcherDebounce = setTimeout(() => {
-                console.log(`[Master] Config file '${filename}' changed. Reloading and distributing to all...`);
-                loadAndDistributeConfigToAll(); // <-- Call the "all" function
-            }, 200);
+
+MasterNode.prototype.sendControlToSlave = function(slaveId, action) {
+	let self = this;
+   const slaveSocket = self._connectedSlaves.get(slaveId);
+    if (slaveSocket) {
+        slaveSocket.emit('control', { action: action });
+        console.log(`[Master] Sent '${action}' command to slave ${slaveId}.`);
+    } else {
+        console.warn(`[Master] Attempted to send command to disconnected slave: ${slaveId}`);
+    }
+};
+
+/**
+ * @method									- watchConfigFile
+ * @param									- none
+ * @returns									- none
+ * @summary									- Watches the configuration file for changes and reloads/sends updates to Slaves as needed.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
+ */
+MasterNode.prototype.watchConfigFile = function() {
+    let self = this;
+    
+    // Initial load
+    self.loadConfig();
+
+    fs.watch(self._strConfigFilePath, (eventType, filename) => {
+			let self = this;
+        if (eventType === 'change') {
+            console.log(`[Master] Config file changed. Reloading and redistributing...`);
+            const loaded = self.loadConfig();
+            if (loaded) {
+                // Resend config to all currently connected slaves
+                for (const slaveId of self._connectedSlaves.keys()) {
+                    self.sendConfigToSlave(slaveId);
+                }
+            }
         }
     });
-}
+};
 
-// --- Main Execution ---
-connectToWebServer();
-listenForSlaves();
-watchConfigFile();
-
+// --- Instantiate and run the master ---
+const master = new MasterNode('http://localhost:3000', 4000, path.join(__dirname, 'master_config.json'));
+master.start();
+master.connectToWebServer();

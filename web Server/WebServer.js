@@ -1,71 +1,107 @@
-/***
- * @title			- Webserver.js
- * @Architecture	- The Master node connects to this Webserver via Socket.IO and sends it data received from Slaves.
- * 					- The Webserver can then broadcast this data to any connected dashboard clients (not implemented here).
- * 
- * @description	- This is the central hub that the Master node connects to and the future dashboard will listen to.
- * @author 			- Gaurav Kishore
- * @date 			- 14-10-2025
- *
- */
-
-
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
-const PORT = 3000;
+/**
+ * @class WebServer
+ *	@extends none 	
+ * @param {number} nPort      - The port number on which the server listens.
+ * @constructor 
+ * @summary 						- A simple web server using Express and Socket.IO to facilitate communication 
+ * 									   between the Master Node and UI clients.
+ */
+function WebServer(nPort) {
+	let self = this;
+    self._nPort = nPort;
+    self._app = express();
+    self._httpServer = http.createServer(self.app);
+    self._io = new Server(self._httpServer, {
+        cors: {
+            origin: "*", // Allow all connections
+        }
+    });
+    self._masterSocket = null;
+    console.log('[WebServer] Initialized.');
+}
 
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "*", // Allow all origins for simplicity. In production, restrict this.
-  },
-});
+/**
+ * @method								- setupListeners
+ * @param								- none
+ * @returns								- none
+ * @summary								- Sets up the Socket.IO listeners for incoming connections from the Master Node and UI clients.
+ * @author								- Gaurav Kishore
+ * @date									- 15 - Oct - 2025
+ */
+WebServer.prototype.setupListeners = function() {
+    const self = this; 
 
-console.log(`[Webserver] Starting on port ${PORT}`);
+    self._io.on('connection', (socket)=>{
+			console.log('[WebServer] A client connected:', socket.id);
+        const clientType = socket.handshake.query.type;
 
+        if (clientType === 'master') {
+            console.log('[WebServer] Master Node has connected.');
+            self._masterSocket = socket;
+            self._io.emit('master-status', { status: 'online' }); // Inform UI
+
+            // When master disconnects
+            socket.on('disconnect', function() {
+                console.log('[WebServer] Master Node has disconnected.');
+                self._masterSocket = null;
+                self._io.emit('master-status', { status: 'offline' });
+            });
+
+        } else {
+            console.log('[WebServer] A UI Dashboard client has connected.');
+        }
+    });
+};
+
+/**
+ * @method									- forwardDataToUI
+ * @param {object} data					- The data packet received from the Master Node to be forwarded to the UI.
+ * @returns									- none
+ * @summary									- Forwards data received from the Master Node to all connected UI clients.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
+ */
+
+WebServer.prototype.forwardDataToUI = function(data) {
+	let self = this;
+    self._io.emit('update-dashboard', data);
+    // console.log('[WebServer] Forwarded data to UI:', data); // Uncomment for verbose logging
+};
 
 
 /**
- * @method 				- masterNamespace
- * @description 		- This namespace handles connections from the Master node.
- * 
- * @author 				- Gaurav Kishore
- * @date 				- 14-10-2025
- * 
+ * @method									- start
+ * @param									- none
+ * @returns									- none
+ * @summary									- Starts the web server and sets up necessary listeners.
+ * @author									- Gaurav Kishore
+ * @date										- 15 - Oct - 2025
  */
 
-const masterNamespace = io.of('/master');
-masterNamespace.on('connection', (socket) => {
-  console.log('[Webserver] Master node connected successfully.');
+WebServer.prototype.start = function() {
+	let self = this;
+    self.setupListeners();
 
-  // When the master forwards data from a slave, broadcast it to all dashboard clients.
-  socket.on('forward-data', (data) => {
-    console.log(`[Webserver] Received data from Master, forwarding to dashboard:`, data);
-    // Emit to the default namespace where the dashboard UI will be listening.
-    io.emit('update-dashboard', data);
-  });
+    // The master will push data to us, so we listen on its socket.
+    const checkMasterInterval = setInterval(() => {
+        if (self._masterSocket) {
+            self._masterSocket.on('forward-to-ui', self.forwardDataToUI.bind(self));
+            // We only need to set this listener once, so clear the interval.
+            clearInterval(checkMasterInterval);
+        }
+    }, 1000);
 
-  
-  // Handle master disconnection
-  socket.on('disconnect', () => {
-    console.log('[Webserver] Master node disconnected.');
-    // Notify the dashboard that the master is offline
-    io.emit('master-status', { status: 'offline' });
-  });
-  
-  // Notify the dashboard that the master is online
-  io.emit('master-status', { status: 'online' });
-});
+    self._httpServer.listen(self._nPort, () => {
+			let self = this;
+        console.log(`[WebServer] Server listening on port ${self._nPort}`);
+    });
+};
 
-// A simple check to see if the server is running via HTTP
-app.get('/', (req, res) => {
-  res.send('Webserver is running.');
-});
+// --- Instantiate and run the server ---
+const webServer = new WebServer(3000);
+webServer.start();
 
-
-server.listen(PORT, () => {
-  console.log(`[Webserver] Listening for connections.`);
-});
