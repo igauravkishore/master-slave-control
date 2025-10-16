@@ -3,18 +3,18 @@ const http = require('http');
 const { Server } = require('socket.io');
 
 /**
- * @class WebServer
- *	@extends none 	
- * @param {number} nPort      - The port number on which the server listens.
+ * @class 									- WebServer
+ * @extends 								- none 	
+ * @param {number} nPort      		- The port number on which the server listens.
  * @constructor 
- * @summary 						- A simple web server using Express and Socket.IO to facilitate communication 
- * 									   between the Master Node and UI clients.
+ * @summary 								- A simple web server using Express and Socket.IO to facilitate communication 
+ * 									   	  between the Master Node and UI clients.
  */
 function WebServer(nPort) {
 	let self = this;
     self._nPort = nPort;
     self._app = express();
-    self._httpServer = http.createServer(self.app);
+    self._httpServer = http.createServer(self._app);
     self._io = new Server(self._httpServer, {
         cors: {
             origin: "*", // Allow all connections
@@ -25,24 +25,40 @@ function WebServer(nPort) {
 }
 
 /**
- * @method								- setupListeners
- * @param								- none
- * @returns								- none
- * @summary								- Sets up the Socket.IO listeners for incoming connections from the Master Node and UI clients.
- * @author								- Gaurav Kishore
- * @date									- 15 - Oct - 2025
+ * @method											- setupListeners
+ * @param											- none
+ * @returns											- none
+ * @summary											- Sets up the Socket.IO listeners for incoming connections from the Master Node 
+ * 											  		  and UI clients.
+ * @author											- Gaurav Kishore
+ * @date												- 15 - Oct - 2025
  */
 WebServer.prototype.setupListeners = function() {
     const self = this; 
 
     self._io.on('connection', (socket)=>{
 			console.log('[WebServer] A client connected:', socket.id);
-        const clientType = socket.handshake.query.type;
-
-        if (clientType === 'master') {
+            console.log('[WebServer] Connection query parameters:', socket.handshake);
+        const clientType = socket.id;
+        
+        console.log('[WebServer] Client type:', clientType);
+        if (clientType) {
             console.log('[WebServer] Master Node has connected.');
             self._masterSocket = socket;
-            self._io.emit('master-status', { status: 'online' }); // Inform UI
+            self._masterSocket.emit('master-status', { status: 'online' }); // Inform UI
+
+				socket.on('forward-data', (data)=>{
+                    console.log('data to UI:', data);
+                // self._masterSocket.emit('update-dashboard', data);
+                self._masterSocket.emit('data-ui', data);
+            });
+
+				// Listen for control commands coming from a UI and forward to master
+            socket.on('control-slave', (command) => {
+                if (self._masterSocket) {
+                    self._masterSocket.emit('control-slave', command);
+                }
+            });
 
             // When master disconnects
             socket.on('disconnect', function() {
@@ -57,43 +73,28 @@ WebServer.prototype.setupListeners = function() {
     });
 };
 
-/**
- * @method									- forwardDataToUI
- * @param {object} data					- The data packet received from the Master Node to be forwarded to the UI.
- * @returns									- none
- * @summary									- Forwards data received from the Master Node to all connected UI clients.
- * @author									- Gaurav Kishore
- * @date										- 15 - Oct - 2025
- */
-
-WebServer.prototype.forwardDataToUI = function(data) {
-	let self = this;
-    self._io.emit('update-dashboard', data);
-    // console.log('[WebServer] Forwarded data to UI:', data); // Uncomment for verbose logging
-};
-
 
 /**
- * @method									- start
- * @param									- none
- * @returns									- none
- * @summary									- Starts the web server and sets up necessary listeners.
- * @author									- Gaurav Kishore
- * @date										- 15 - Oct - 2025
+ * @method											- start
+ * @param											- none
+ * @returns											- none
+ * @summary											- Starts the web server and sets up necessary listeners.
+ * @author											- Gaurav Kishore
+ * @date												- 15 - Oct - 2025
  */
 
 WebServer.prototype.start = function() {
 	let self = this;
     self.setupListeners();
 
-    // The master will push data to us, so we listen on its socket.
-    const checkMasterInterval = setInterval(() => {
-        if (self._masterSocket) {
-            self._masterSocket.on('forward-to-ui', self.forwardDataToUI.bind(self));
-            // We only need to set this listener once, so clear the interval.
-            clearInterval(checkMasterInterval);
-        }
-    }, 1000);
+   //  // The master will push data to us, so we listen on its socket.
+   //  const checkMasterInterval = setInterval(() => {
+   //      if (self._masterSocket) {
+   //          self._masterSocket.on('forward-to-ui', self.forwardDataToUI.bind(self));
+   //          // We only need to set this listener once, so clear the interval.
+   //          clearInterval(checkMasterInterval);
+   //      }
+   //  }, 1000);
 
     self._httpServer.listen(self._nPort, () => {
 			let self = this;

@@ -2,7 +2,7 @@
   "config": [
     {
       "slaveIp": "192.168.1.10",
-      "handlers": ["temperature", "light", "pressure"]
+      "handlers": [ "light", "pressure", "vibration"]
     },
     {
       "slaveIp": "192.168.1.11",

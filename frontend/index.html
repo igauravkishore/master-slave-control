@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Master-Slave Control Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Quasar CSS -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/quasar@2.16.4/dist/quasar.prod.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+
+      .status-badge {
+        transition: background-color 0.3s ease;
+      }
+
+      .status-online {
+        background-color: #4caf50 !important;
+        color: white;
+      }
+
+      .status-offline {
+        background-color: #f44336 !important;
+        color: white;
+      }
+
+      .data-row.updated {
+        animation: flash-blue 0.7s ease;
+      }
+
+      @keyframes flash-blue {
+        0% {
+          background-color: transparent;
+        }
+
+        30% {
+          background-color: #e3f2fd;
+        }
+
+        100% {
+          background-color: transparent;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="q-app">
+      <q-layout view="lHh Lpr lFf">
+        <q-header elevated>
+          <q-toolbar>
+            <q-toolbar-title>
+              <q-icon name="hub" class="q-mr-sm"></q-icon>
+              Master-Slave Control Dashboard
+            </q-toolbar-title>
+            <q-badge
+              :class="webserverStatus === 'online' ? 'status-online' : 'status-offline'"
+              class="status-badge q-pa-sm"
+            >
+              Webserver: {{ webserverStatus.toUpperCase() }}
+            </q-badge>
+          </q-toolbar>
+        </q-header>
+
+        <q-page-container>
+          <q-page class="q-pa-md">
+            <div class="q-mb-md">
+              <q-card flat bordered>
+                <q-card-section>
+                  <div class="text-h6">
+                    Master Node Status
+                    <q-badge
+                      :label="masterStatus"
+                      :color="masterStatus === 'online' ? 'positive' : 'negative'"
+                      class="q-ml-sm"
+                    />
+                  </div>
+                </q-card-section>
+              </q-card>
+            </div>
+
+            <div
+              v-if="Object.keys(slaves).length === 0 && masterStatus === 'online'"
+              class="text-center q-pa-xl"
+            >
+              <q-spinner-dots color="primary" size="40px" />
+              <div class="q-mt-md text-grey-8">Waiting for slave data...</div>
+            </div>
+
+            <div class="row q-col-gutter-md">
+              <div
+                v-for="slave in sortedSlaves"
+                :key="slave.id"
+                class="col-12 col-sm-6 col-md-4 col-lg-3"
+              >
+                <q-card flat bordered>
+                  <q-card-section>
+                    <div class="row items-center no-wrap">
+                      <div class="col">
+                        <div class="text-subtitle1 text-weight-medium">
+                          Slave Ip: {{ slave.id }}
+                        </div>
+                        <div class="text-caption text-grey">
+                          Last seen: {{ new
+                          Date(slave.lastSeen).toLocaleTimeString() }}
+                        </div>
+                        <div class="text-caption text-grey">
+                          Status: {{ slave.status }}
+                        </div>
+                        <!-- <div class="text-caption text-grey">
+                          Handler : {{slave.handlers}}
+                        </div> -->
+                      </div>
+
+                      <div class="col-auto">
+                        <q-badge
+                          :label="slave.status"
+                          :color="slave.status === 'online' ? 'positive' : 'negative'"
+                        />
+                      </div>
+                    </div>
+                  </q-card-section>
+
+                  <!-- <q-separator /> -->
+
+                  <!-- <q-card-actions align = "around">
+                    <q-btn
+                      flat
+                      dense
+                      color="positive"
+                      icon="play_arrow"
+                      label="Start"
+                      @click="controlSlave(slave.id, 'start')"
+                    />
+                    <q-btn
+                      flat
+                      dense
+                      color="negative"
+                      icon="stop"
+                      label="Stop"
+                      @click="controlSlave(slave.id, 'stop')"
+                    />
+                    <q-btn
+                      flat
+                      dense
+                      color="primary"
+                      icon="refresh"
+                      label="Restart"
+                      @click="controlSlave(slave.id, 'restart')"
+                    />
+                  </q-card-actions> -->
+
+                  <!-- <q-separator /> -->
+
+                  <q-list dense v-if="Object.keys(slave.handlers).length > 0">
+                    <q-item-label header class="text-body2"
+                      >Sensor Handlers</q-item-label
+                    >
+                    <q-item
+                      v-for="(handler, type) in slave.handlers"
+                      :key="type"
+                      class="data-row"
+                      :class="{ 'updated': handler.updated }"
+                    >
+                      <q-item-section>
+                        <q-item-label class="text-capitalize"
+                          >{{ type }}</q-item-label
+                        >
+                      </q-item-section>
+                      <q-item-section side>
+                        <q-item-label caption
+                          >{{ handler.value.toFixed(2) }}</q-item-label
+                        >
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+
+                </q-card>
+              </div>
+            </div>
+          </q-page>
+        </q-page-container>
+      </q-layout>
+    </div>
+
+    <!-- Vue and Quasar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.16.4/dist/quasar.umd.prod.js"></script>
+
+    <!-- Socket.IO Client -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+    <script>
+      const socket = io("http://localhost:3000");
+
+      const app = Vue.createApp({
+        data() {
+          return {
+            webserverStatus: "offline",
+            masterStatus: "offline",
+            slaves: {},
+            uiData: {},
+          };
+        },
+        computed: {
+          sortedSlaves() {
+            return Object.values(this.slaves).sort((a, b) =>
+              a.id.localeCompare(b.id)
+            );
+          },
+        },
+        methods: {
+          controlSlave(slaveId, action) {
+            console.log(`[UI] Sending '${action}' command to slave ${slaveId}`);
+            socket.emit("control-slave", { slaveId, action });
+          },
+        },
+        mounted() {
+          socket.on("connect", () => {
+            this.webserverStatus = "online";
+            console.log("[UI] SUCCESS: Connected to webserver.");
+          });
+
+          socket.on("disconnect", () => {
+            this.webserverStatus = "offline";
+            this.masterStatus = "offline";
+            Object.keys(this.slaves).forEach(
+              (id) => (this.slaves[id].status = "offline")
+            );
+            console.error("[UI] ERROR: Disconnected from webserver.");
+          });
+
+          socket.on("connect_error", (err) => {
+            console.error(
+              "[UI] ERROR: Connection to webserver failed:",
+              err.message
+            );
+          });
+
+          // Listen for master status updates
+          socket.on("master-status", (data) => {
+            // console.log("[UI] Received 'master-status' event with data:", data);
+            this.masterStatus = data.status;
+          });
+
+          // socket.on('data-ui', (data) => {
+          //     console.log("[UI] Received 'data-ui' event with data:", data);
+          // });
+          // Main data handler
+          socket.on("data-ui", (data) => {
+            // console.log("[UI] Received 'update-dashboard' event with data:", data);
+            // **NEW**: Heavy logging to see exactly what we receive
+            // console.log("[UI] Received 'update-dashboard' event with data:", JSON.parse(JSON.stringify(data)));
+
+            if (!data || !data.slaveIp) {
+              console.warn("[UI] Received invalid data packet:", data);
+              return;
+            }
+
+            // Initialize slave object if it doesn't exist
+            if (!this.slaves[data.slaveIp]) {
+              this.slaves[data.slaveIp] = {
+                id: data.slaveIp,
+                status: "offline",
+                lastSeen: Date.now(),
+                handlers: {},
+              };
+              console.log(`[UI] Created new slave object for ${data.slaveIp}`);
+            }
+
+            const slave = this.slaves[data.slaveIp];
+            slave.lastSeen = data.timestamp || Date.now();
+
+            // Handle health checks, status changes, or disconnects
+            if (data.status) {
+              slave.status = data.status;
+            }
+            // Handle sensor data
+            else if (data.handler && data.value !== undefined) {
+              slave.status = "online"; // If we get data, it's online
+
+              // Initialize handler if it doesn't exist
+              if (!slave.handlers[data.handler]) {
+                slave.handlers[data.handler] = {};
+              }
+              this.uiData = data;
+              console.log(this.uiData);
+
+              slave.handlers[data.handler].value = data.value;
+              slave.handlers[data.handler].updated = true; // For animation flash
+
+              // Reset the flash animation after it runs
+              setTimeout(() => {
+                if (slave.handlers[data.handler]) {
+                  slave.handlers[data.handler].updated = false;
+                }
+              }, 700);
+            }
+          });
+        },
+      });
+
+      app.use(Quasar);
+      app.mount("#q-app");
+    </script>
+  </body>
+</html>

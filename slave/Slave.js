@@ -5,16 +5,16 @@ const SensorHandler = require('./handlers/SensorHandler');
 const HealthHandler = require('./handlers/HealthHandler');
 
 /**
- * @class                                 - SlaveNode
- * @extends                               - none
- * @param {string} strMasterUrl           - The URL of the Master node to connect to.
- * @param {string} strIdentityFilePath    - Path to the slave identity file.
- * @param {string} strConfigFilePath      - Path to the slave configuration file.
+ * @class                                 	- SlaveNode
+ * @extends                               	- none
+ * @param {string} strMasterUrl           	- The URL of the Master node to connect to.
+ * @param {string} strIdentityFilePath    	- Path to the slave identity file.
+ * @param {string} strConfigFilePath      	- Path to the slave configuration file.
  * @constructor
- * @description                           - This is the Slave node that connects to the Master node, identifies itself, receives configuration,
- *                                           and spawns handlers to simulate sensor data and health checks.
- * @author                                - Gaurav Kishore
- * @date                                  - 15 - Oct - 2025
+ * @description                           	- This is the Slave node that connects to the Master node, identifies itself, receives configuration,
+ *                                             and spawns handlers to simulate sensor data and health checks.
+ * @author                                	- Gaurav Kishore
+ * @date                                  	- 15 - Oct - 2025
  *  
  */
 function SlaveNode(strMasterUrl, strIdentityFilePath, strConfigFilePath) {
@@ -32,13 +32,13 @@ function SlaveNode(strMasterUrl, strIdentityFilePath, strConfigFilePath) {
 }
 
 /**
- * @method                                 - start
- * @param                                  - none
- * @returns                                - none
- * @summary                                - Starts the Slave node operations including reading identity 
+ * @method                                 	- start
+ * @param                                  	- none
+ * @returns                                	- none
+ * @summary                                	- Starts the Slave node operations including reading identity 
  *                                           and connecting to the Master.
- * @author                                 - Gaurav Kishore
- * @date                                   - 15 - Oct - 2025
+ * @author                                 	- Gaurav Kishore
+ * @date                                   	- 15 - Oct - 2025
  */
 SlaveNode.prototype.start = function() {
   let self = this;
@@ -49,12 +49,12 @@ SlaveNode.prototype.start = function() {
 };
 
 /**
- * @method                                - readIdentity
- * @param                                 - none
- * @returns {boolean}                     - True if identity read successfully, false otherwise.
- * @summary                               - Reads the slave identity from the specified file.
- * @author                                - Gaurav Kishore
- * @date                                  - 15 - Oct - 2025
+ * @method                                	- readIdentity
+ * @param                                 	- none
+ * @returns {boolean}                     	- True if identity read successfully, false otherwise.
+ * @summary                               	- Reads the slave identity from the specified file.
+ * @author                                	- Gaurav Kishore
+ * @date                                  	- 15 - Oct - 2025
  *  
  */
 SlaveNode.prototype.readIdentity = function() {
@@ -74,12 +74,12 @@ SlaveNode.prototype.readIdentity = function() {
 };
 
 /**
- * @method                                 - connectToMaster
- * @param                                  - none
- * @returns                                - none
- * @summary                                - Establishes a connection to the Master node and sets up event listeners.
- * @author                                 - Gaurav Kishore
- * @date                                   - 15 - Oct - 2025
+ * @method                                 	- connectToMaster
+ * @param                                  	- none
+ * @returns                                	- none
+ * @summary                                	- Establishes a connection to the Master node and sets up event listeners.
+ * @author                                 	- Gaurav Kishore
+ * @date                                   	- 15 - Oct - 2025
  */
 SlaveNode.prototype.connectToMaster = function() {
     let self = this;
@@ -88,12 +88,12 @@ SlaveNode.prototype.connectToMaster = function() {
 };
 
 /**
- * @method                                 - setupListeners
- * @param                                  - none
- * @returns                                - none
- * @summary                                - Sets up the Socket.IO event listeners for communication with the Master node.
- * @author                                 - Gaurav Kishore
- * @date                                   - 15 - Oct - 2025
+ * @method                                 	- setupListeners
+ * @param                                  	- none
+ * @returns                                	- none
+ * @summary                                	- Sets up the Socket.IO event listeners for communication with the Master node.
+ * @author                                 	- Gaurav Kishore
+ * @date                                   	- 15 - Oct - 2025
  */
 SlaveNode.prototype.setupListeners = function() {
     const self = this;
@@ -142,12 +142,12 @@ SlaveNode.prototype.setupListeners = function() {
 };
 
 /**
- * @method                                 - saveConfigToFile
- * @param                                  - none
- * @returns                                - none
- * @summary                                - Saves the current configuration to the specified file.
- * @author                                 - Gaurav Kishore
- * @date                                   - 15 - Oct - 2025
+ * @method                                 	- saveConfigToFile
+ * @param                                  	- none
+ * @returns                                	- none
+ * @summary                                	- Saves the current configuration to the specified file.
+ * @author                                 	- Gaurav Kishore
+ * @date                                   	- 15 - Oct - 2025
  */
 SlaveNode.prototype.saveConfigToFile = function() {
     let self = this;
@@ -160,11 +160,11 @@ SlaveNode.prototype.saveConfigToFile = function() {
 };
 
 /**
- * @method                                - startHandlers
- * @param                                 - none
- * @returns                               - none
- * @summary                               - Starts all handlers as per the current configuration.
- * @author                                - Gaurav Kishore
+ * @method                                	- startHandlers
+ * @param                                 	- none
+ * @returns                               	- none
+ * @summary                               	- Starts all handlers as per the current configuration.
+ * @author                                	- Gaurav Kishore
  *  */
 SlaveNode.prototype.startHandlers = function() {
     let self = this;
@@ -190,12 +190,12 @@ SlaveNode.prototype.startHandlers = function() {
 };
 
 /**
- * @method                                - stopAllHandlers
- * @param                                 - none
- * @returns                               - none
- * @summary                               - Stops all currently active handlers.
- * @author                                - Gaurav Kishore
- * @date                                  - 15 - Oct - 2025
+ * @method                                	- stopAllHandlers
+ * @param                                 	- none
+ * @returns                               	- none
+ * @summary                               	- Stops all currently active handlers.
+ * @author                                	- Gaurav Kishore
+ * @date                                  	- 15 - Oct - 2025
  */
 SlaveNode.prototype.stopAllHandlers = function() {
     let self = this;
@@ -205,12 +205,12 @@ SlaveNode.prototype.stopAllHandlers = function() {
 };
 
 /**
- * @method                                - sendSensorData
- * @param {object} dataPacket             - The data packet to send to the master.
- * @returns                               - none
- * @summary                               - Sends a sensor data packet to the master.
- * @author                                - Gaurav Kishore
- * @date                                  - 15 - Oct - 2025
+ * @method                                	- sendSensorData
+ * @param {object} dataPacket             	- The data packet to send to the master.
+ * @returns                               	- none
+ * @summary                               	- Sends a sensor data packet to the master.
+ * @author                                	- Gaurav Kishore
+ * @date                                  	- 15 - Oct - 2025
  */
 SlaveNode.prototype.sendSensorData = function(dataPacket) {
     let self = this;
@@ -220,12 +220,12 @@ SlaveNode.prototype.sendSensorData = function(dataPacket) {
 
 
 /**
- * @method                                - sendHealthStatus
- * @param {object} healthPacket             - The health packet to send to the master.
- * @returns                               - none
- * @summary                               - Sends a health status packet to the master.
- * @author                                - Gaurav Kishore
- * @date                                  - 15 - Oct - 2025
+ * @method                                	- sendHealthStatus
+ * @param {object} healthPacket           	- The health packet to send to the master.
+ * @returns                               	- none
+ * @summary                               	- Sends a health status packet to the master.
+ * @author                                	- Gaurav Kishore
+ * @date                                  	- 15 - Oct - 2025
  */
 SlaveNode.prototype.sendHealthStatus = function(healthPacket) {
  let self = this;

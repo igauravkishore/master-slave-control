@@ -38,7 +38,7 @@ HealthHandler.prototype.start = function() {
             timestamp: new Date().toISOString()
         };
         self._onHealthCallback(healthPacket);
-    }, 1000); // Send health every 10 seconds
+    }, 10000); // Send health every 10 seconds
 };
 
 /**
