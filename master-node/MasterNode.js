@@ -64,27 +64,33 @@ MasterNode.prototype.start = function() {
  * @date                            	- 15 - Oct - 2025
  */
 MasterNode.prototype.connectToWebServer = function() {
-   let self = this;
-    // Initialize the client socket here
-    self._webserverSocket = io(self._strWebserverUrl);
+	try{
+   		let self = this;
+    		// Initialize the client socket here
+    		self._webserverSocket = io(self._strWebserverUrl);
 
-    self._webserverSocket.on('connect', () => {
-        console.log(`[Master] Connected to Webserver at ${self._strWebserverUrl}`);
-        self._webserverSocket.emit('master-identify'); // Let the server know we are the master
-    });
+    		self._webserverSocket.on('connect', () => {
+        
+        	console.log(`[Master] Connected to Webserver at ${self._strWebserverUrl}`);
+        	self._webserverSocket.emit('master-identify'); // Let the server know we are the master
+    		});
 
-    self._webserverSocket.on('disconnect', () => {
-        console.log(`[Master] Disconnected from Webserver.`);
-    });
+    		self._webserverSocket.on('disconnect', () => {
+        	console.log(`[Master] Disconnected from Webserver.`);
+    		});
 
-    self._webserverSocket.on('connect_error', (err) => {
-        console.error(`[Master] Could not connect to Webserver: ${err.message}`);
-    });
+    		self._webserverSocket.on('connect_error', (err) => {
+        	console.error(`[Master] Could not connect to Webserver: ${err.message}`);
+    		});
 
-    // Listen for control commands from the webserver
-    self._webserverSocket.on('control-slave', (command) => {
-        self.sendControlToSlave(command.slaveId, command.action);
-    });
+    		// Listen for control commands from the webserver
+    		self._webserverSocket.on('control-slave', (command) => {
+        	self.sendControlToSlave(command.slaveId, command.action);
+    		});
+
+		} catch(err) {
+		  console.log(err);
+	   }
 };
 
 
@@ -97,9 +103,13 @@ MasterNode.prototype.connectToWebServer = function() {
  * @date                            	- 15 - Oct - 2025
  */
 MasterNode.prototype.listenForSlaves = function() {
-   let self = this;
-    console.log(`[Master] Listening for slaves on port ${self._nSlavePort}`);
-    self._slaveServer.on('connection', self.handleSlaveConnection.bind(self));
+	try{
+   		let self = this;
+    		console.log(`[Master] Listening for slaves on port ${self._nSlavePort}`);
+    		self._slaveServer.on('connection', self.handleSlaveConnection.bind(self));
+		} catch(err) {
+		console.log(err);
+	}
 };
 
 
@@ -113,37 +123,58 @@ MasterNode.prototype.listenForSlaves = function() {
  * @date                            	- 15 - Oct - 2025
  */
 MasterNode.prototype.handleSlaveConnection = function(socket) {
-    let self = this;
-    let slaveId = null; // To be set upon identification
+	try{
+    		let self = this;
+    		let slaveId = null; // To be set upon identification
 
-    console.log('[Master] A new slave is attempting to connect...');
+    		console.log('[Master] A new slave is attempting to connect...');
 
-    socket.on('identify', function(identity) {
-        slaveId = identity.id;
-        self._connectedSlaves.set(slaveId, socket);
-        console.log(`[Master] Slave identified as ${slaveId} and is now connected.`);
-        self.sendConfigToSlave(slaveId); // Send config immediately upon identification
-    });
+    		socket.on('identify', function(identity) {
+				try{
+        			  slaveId = identity.id;
+        			  self._connectedSlaves.set(slaveId, socket);
+        			  console.log(`[Master] Slave identified as ${slaveId} and is now connected.`);
+        			  self.sendConfigToSlave(slaveId); // Send config immediately upon identification
+					} catch(err) {
+						console.log(err);
+					}
+    		});
 
-    // Listen for data and forward it
-    socket.on('sensor-data', function(data) {
-        console.log(`[Master] >>> Received SENSOR-DATA from ${data.slaveIp}`);
-        self.forwardDataToWebserver(data);
-    });
+    		// Listen for data and forward it
+    		socket.on('sensor-data', function(data) {
+				try{
+        			  console.log(`[Master] >>> Received SENSOR-DATA from ${data.slaveIp}`);
+        		     self.forwardDataToWebserver(data);
+				} catch(err) {
+					console.log(err);
+				}
+    		});
     
-    socket.on('health-status', function(data) {
-        console.log(`[Master] >>> Received HEALTH-STATUS from ${data.slaveIp}`);
-        self.forwardDataToWebserver(data);
-    });
+    		socket.on('health-status', function(data) {
+				try{
+        				console.log(`[Master] >>> Received HEALTH-STATUS from ${data.slaveIp}`);
+        				self.forwardDataToWebserver(data);
+				} catch(err) {
+					console.log(err);
+				}
+    		});
 
-    socket.on('disconnect', function() {
-        if (slaveId) {
-            self._connectedSlaves.delete(slaveId);
-            console.log(`[Master] Slave ${slaveId} disconnected.`);
-            // Notify UI that this slave is offline
-            self.forwardDataToWebserver({ slaveIp: slaveId, status: 'offline' });
-        }
-    });
+    		socket.on('disconnect', function() {
+				try{
+        				if (slaveId) {
+            		self._connectedSlaves.delete(slaveId);
+            		console.log(`[Master] Slave ${slaveId} disconnected.`);
+            		// Notify UI that this slave is offline
+            		self.forwardDataToWebserver({ slaveIp: slaveId, status: 'offline' });
+        			}
+				} catch(err) {
+					console.log(err);
+				}
+    		});
+
+		} catch(err) {
+			console.log(err);
+	}
 };
 
 /**
@@ -153,15 +184,13 @@ MasterNode.prototype.handleSlaveConnection = function(socket) {
  * @summary                    	 			- Forwards a data packet from a slave to the webserver.
  */
 MasterNode.prototype.forwardDataToWebserver = function(data) {
-    let self = this;
-    console.log( data);
-    self._webserverSocket.emit('forward-data', data);
-    // if (self._webserverSocket && self._webserverSocket.connected) {
-
-    //     // **FIXED**: Using the correct event name 'forward-data' that the webserver expects
-    // } else {
-    //     console.warn('[Master] Cannot forward data: Not connected to Webserver.');
-    // }
+	try{
+   		let self = this;
+   		console.log( data);
+   		self._webserverSocket.emit('forward-data', data);
+	} catch(err) {
+		console.log(err);
+	}
 };
 
 
@@ -196,16 +225,20 @@ MasterNode.prototype.loadConfig = function() {
  * @date                            		- 15 - Oct - 2025
  */
 MasterNode.prototype.sendConfigToSlave = function(slaveId) {
-   let self = this;
-    const slaveSocket = self._connectedSlaves.get(slaveId);
-    const slaveConfig = self._config.config.find(c => c.slaveIp === slaveId);
+    let self = this;
+	try{
+		  const slaveSocket = self._connectedSlaves.get(slaveId);
+    	  const slaveConfig = self._config.config.find(c => c.slaveIp === slaveId);
 
-    if (slaveSocket && slaveConfig) {
+        if (slaveSocket && slaveConfig) {
         slaveSocket.emit('config', slaveConfig);
         console.log(`[Master] Sent config to ${slaveId}:`, slaveConfig);
-    } else {
+    	} else {
         console.log(`[Master] No configuration found for slave ID: ${slaveId}`);
-    }
+      }
+	} catch(err){
+		console.log(err);
+	}
 };
 
 
@@ -221,13 +254,17 @@ MasterNode.prototype.sendConfigToSlave = function(slaveId) {
 
 MasterNode.prototype.sendControlToSlave = function(slaveId, action) {
    let self = this;
-   const slaveSocket = self._connectedSlaves.get(slaveId);
-    if (slaveSocket) {
-        slaveSocket.emit('control', { action: action });
-        console.log(`[Master] Sent '${action}' command to slave ${slaveId}.`);
-    } else {
-        console.warn(`[Master] Attempted to send command to disconnected slave: ${slaveId}`);
-    }
+	try{
+   		const slaveSocket = self._connectedSlaves.get(slaveId);
+    		if (slaveSocket) {
+        			slaveSocket.emit('control', { action: action });
+        			console.log(`[Master] Sent '${action}' command to slave ${slaveId}.`);
+    			} else {
+        			console.warn(`[Master] Attempted to send command to disconnected slave: ${slaveId}`);
+    			}
+	} catch(err){
+		console.log(err);
+	}
 };
 
 
@@ -242,12 +279,12 @@ MasterNode.prototype.sendControlToSlave = function(slaveId, action) {
  */
 MasterNode.prototype.watchConfigFile = function() {
     let self = this;
-    
-    // Initial load
-    self.loadConfig();
+    try{
+			// Initial load
+    		self.loadConfig();
 
-    fs.watch(self._strConfigFilePath, (eventType, filename) => {
-        if (eventType === 'change') {
+    		fs.watch(self._strConfigFilePath, (eventType, filename) => {
+        	if (eventType === 'change') {
             console.log(`[Master] Config file changed. Reloading and redistributing...`);
             const loaded = self.loadConfig();
             if (loaded) {
@@ -258,6 +295,9 @@ MasterNode.prototype.watchConfigFile = function() {
             }
         }
     });
+	} catch(err){
+		console.log(err);
+	}
 };
 
 

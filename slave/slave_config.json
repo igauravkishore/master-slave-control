@@ -1,6 +1,8 @@
 {
   "slaveIp": "192.168.1.10",
   "handlers": [
+    "temperature",
+    "humidity",
     "light",
     "pressure",
     "vibration"

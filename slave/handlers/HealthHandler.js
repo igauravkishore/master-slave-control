@@ -28,17 +28,20 @@ function HealthHandler(strSlaveId, onHealthCallback) {
  * 
  */
 HealthHandler.prototype.start = function() {
-   let self = this;
+    let self = this;
     if (self._intervalId) return;
-    
-    self._intervalId = setInterval(function() {
-        const healthPacket = {
+    try{
+        self._intervalId = setInterval(function() {
+            const healthPacket = {
             slaveIp: self._slaveId,
             status: 'online',
             timestamp: new Date().toISOString()
-        };
-        self._onHealthCallback(healthPacket);
-    }, 10000); // Send health every 10 seconds
+            };
+            self._onHealthCallback(healthPacket);
+        }, 10000); // Send health every 10 seconds
+    } catch(err){
+        console.log(err);
+    }
 };
 
 /**
@@ -51,9 +54,13 @@ HealthHandler.prototype.start = function() {
  */
 HealthHandler.prototype.stop = function() {
    let self = this;
+   try{
     if (!self._intervalId) return;
     clearInterval(self._intervalId);
     self._intervalId = null;
+   } catch(err){
+     console.log(err);
+   } 
 };
 
 // Export the class

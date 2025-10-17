@@ -28,21 +28,23 @@ function SensorHandler(strHandlerType, strSlaveId, strOnDataCallback) {
  */
 SensorHandler.prototype.start = function() {
     let self = this;
-    if (self._intervalId) return; // Prevent multiple intervals
-    
-    const randomInterval = 4000 + Math.random() * 5000; // 4-9 seconds
-
-    self._intervalId = setInterval(function() {
+    try{
+        if (self._intervalId) return; // Prevent multiple intervals
+        const randomInterval = 4000 + Math.random() * 5000; // 4-9 seconds
+        self._intervalId = setInterval(function() {
         const value = (Math.random() * 100).toFixed(2);
         const dataPacket = {
-            slaveIp: self._slaveId,
-            handler: self._handlerType,
-            value: parseFloat(value),
-            timestamp: new Date().toISOString(),
-        };
+                slaveIp: self._slaveId,
+                handler: self._handlerType,
+                value: parseFloat(value),
+                timestamp: new Date().toISOString(),
+            };
         // Give the data back to the SlaveNode to send
-        self._onDataCallback(dataPacket);
-    }, randomInterval);
+            self._onDataCallback(dataPacket);
+        }, randomInterval);
+    }catch(err){
+        console.log(err);
+    }
 };
 
 /**
@@ -55,10 +57,14 @@ SensorHandler.prototype.start = function() {
  */
 SensorHandler.prototype.stop = function() {
    let self = this;
-    if (!self._intervalId) return;
-    clearInterval(self._intervalId);
-    self._intervalId = null;
-    console.log(`[Handler] Stopped handler for: ${self._handlerType}`);
+   try{
+        if (!self._intervalId) return;
+        clearInterval(self._intervalId);
+        self._intervalId = null;
+        console.log(`[Handler] Stopped handler for: ${self._handlerType}`);
+   } catch(err){
+     console.log(err);
+   }
 };
 
 // Export the class

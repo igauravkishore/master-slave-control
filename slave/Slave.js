@@ -37,7 +37,7 @@ function SlaveNode(strMasterUrl, strIdentityFilePath, strConfigFilePath) {
  * @returns                                	- none
  * @summary                                	- Starts the Slave node operations including reading identity 
  *                                           and connecting to the Master.
- * @author                                 	- Gaurav Kishore
+ * @author                                 	    - Gaurav Kishore
  * @date                                   	- 15 - Oct - 2025
  */
 SlaveNode.prototype.start = function() {
@@ -83,8 +83,12 @@ SlaveNode.prototype.readIdentity = function() {
  */
 SlaveNode.prototype.connectToMaster = function() {
     let self = this;
-    self._socket = io(self._strMasterUrl);
-    self.setupListeners();
+	 try{
+			self._socket = io(self._strMasterUrl);
+    		self.setupListeners();
+	 }catch(err){
+		 console.log(err);
+	 }
 };
 
 /**
@@ -99,41 +103,53 @@ SlaveNode.prototype.setupListeners = function() {
     const self = this;
 
     self._socket.on('connect', function() {
-        console.log(`[Slave] Connected to Master at ${self._strMasterUrl}`);
-        self._socket.emit('identify', { id: self._identity.id });
-        console.log('[Slave] Identification sent to master.');
+		try{
+        	  console.log(`[Slave] Connected to Master at ${self._strMasterUrl}`);
+        	  self._socket.emit('identify', { id: self._identity.id });
+        	  console.log('[Slave] Identification sent to master.');
+			} catch(err){
+			console.log(err);
+			}
     });
 
     self._socket.on('config', function(config) {
         console.log('[Slave] Received configuration:', config);
         self._config = config;
         self.saveConfigToFile();
-        
         self.stopAllHandlers();
         self.startHandlers();
     });
 
     self._socket.on('control', function(command) {
-        console.log(`[Slave] Received control command: ${command.action}`);
-        switch (command.action) {
-            case 'stop':
-                self.stopAllHandlers();
-                break;
-            case 'start':
-                self.startHandlers();
-                break;
-            case 'restart':
+		 try{
+        		console.log(`[Slave] Received control command: ${command.action}`);
+        		switch (command.action) {
+            	case 'stop':
+                	self.stopAllHandlers();
+                	break;
+            	case 'start':
+                	self.startHandlers();
+                	break;
+            	case 'restart':
                 self.stopAllHandlers();
                 setTimeout(() => self.startHandlers(), 100);
-                break;
-            default:
+                	break;
+            	default:
                 console.warn(`[Slave] Unknown control command received: ${command.action}`);
-        }
+        				break;
+        			}
+			}catch(err){
+				console.log(err);
+			}
     });
 
     self._socket.on('disconnect', function() {
         console.error('[Slave] Disconnected from Master. Stopping handlers.');
-        self.stopAllHandlers();
+		  try{
+			  self.stopAllHandlers();
+		  }catch(err){
+			  console.log(err);
+		  }
     });
 
     self._socket.on('connect_error', function(err) {
@@ -168,25 +184,28 @@ SlaveNode.prototype.saveConfigToFile = function() {
  *  */
 SlaveNode.prototype.startHandlers = function() {
     let self = this;
+    try{
+    		if (self._activeHandlers.size > 0 || !self._config || !self._config.handlers) {
+        		console.log('[Slave] Start command ignored: Handlers are already running or config is missing.');
+        		return;
+    			}
     
-    if (self._activeHandlers.size > 0 || !self._config || !self._config.handlers) {
-        console.log('[Slave] Start command ignored: Handlers are already running or config is missing.');
-        return;
-    }
-    
-    console.log('[Slave] Spawning handlers...');
+    		console.log('[Slave] Spawning handlers...');
 
-    // Create a new SensorHandler for each type in the config
-    self._config.handlers.forEach(handlerType => {
-        const handler = new SensorHandler(handlerType, self._identity.id, self.sendSensorData.bind(self));
-        handler.start();
-        self._activeHandlers.set(handlerType, handler);
-    });
+    		// Create a new SensorHandler for each type in the config
+    		self._config.handlers.forEach(handlerType => {
+        		const handler = new SensorHandler(handlerType, self._identity.id, self.sendSensorData.bind(self));
+        		handler.start();
+        		self._activeHandlers.set(handlerType, handler);
+   		 });
     
-    // Create the HealthHandler
-    const healthHandler = new HealthHandler(self._identity.id, self.sendHealthStatus.bind(self));
-    healthHandler.start();
-    self._activeHandlers.set('health-check', healthHandler);
+    		// Create the HealthHandler
+    		const healthHandler = new HealthHandler(self._identity.id, self.sendHealthStatus.bind(self));
+    		healthHandler.start();
+    		self._activeHandlers.set('health-check', healthHandler);
+	  }catch(err){
+				console.log(err);
+	  }
 };
 
 /**
@@ -199,9 +218,13 @@ SlaveNode.prototype.startHandlers = function() {
  */
 SlaveNode.prototype.stopAllHandlers = function() {
     let self = this;
-    self._activeHandlers.forEach(handler => handler.stop());
-    self._activeHandlers.clear();
-    console.log('[Slave] All active handlers have been stopped.');
+    try{
+    		self._activeHandlers.forEach(handler => handler.stop());
+    		self._activeHandlers.clear();
+    		console.log('[Slave] All active handlers have been stopped.');
+		}catch(err){
+			console.log(err);
+		}		
 };
 
 /**
@@ -214,8 +237,12 @@ SlaveNode.prototype.stopAllHandlers = function() {
  */
 SlaveNode.prototype.sendSensorData = function(dataPacket) {
     let self = this;
-    self._socket.emit('sensor-data', dataPacket);
-    console.log(`[Slave] Sent data for ${dataPacket.handler}:`, dataPacket.value);
+	 try{
+    		self._socket.emit('sensor-data', dataPacket);
+    		console.log(`[Slave] Sent data for ${dataPacket.handler}:`, dataPacket.value);
+	 }catch(err){
+		console.log(err);
+	}
 };
 
 
