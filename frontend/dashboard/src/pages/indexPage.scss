@@ -1,0 +1,15 @@
+.data-row.updated {
+  animation: flash-blue 0.7s ease;
+}
+
+@keyframes flash-blue {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #2196F3; /* Using a standard blue color */
+  }
+  100% {
+    background-color: transparent;
+  }
+}

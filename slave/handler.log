@@ -1,0 +1,58 @@
+2025-10-23 15:37:03 info: [Handler] Created handler for: temperature
+2025-10-23 15:37:03 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 15:37:03 info: [Handler] Created handler for: humidity
+2025-10-23 15:37:03 info: [Handler] Created handler for: light
+2025-10-23 15:37:03 info: [Handler] Created handler for: pressure
+2025-10-23 15:37:03 info: [Handler] Created handler for: vibration
+2025-10-23 15:42:39 info: [Handler] Created handler for: temperature
+2025-10-23 15:42:39 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 15:42:39 info: [Handler] Created handler for: humidity
+2025-10-23 15:42:39 info: [Handler] Created handler for: light
+2025-10-23 15:42:39 info: [Handler] Created handler for: pressure
+2025-10-23 15:42:39 info: [Handler] Created handler for: vibration
+2025-10-23 15:43:50 info: [Handler] Created handler for: temperature
+2025-10-23 15:43:50 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 15:43:50 info: [Handler] Created handler for: humidity
+2025-10-23 15:43:50 info: [Handler] Created handler for: light
+2025-10-23 15:43:50 info: [Handler] Created handler for: pressure
+2025-10-23 15:43:50 info: [Handler] Created handler for: vibration
+2025-10-23 15:45:01 info: [Handler] Created handler for: temperature
+2025-10-23 15:45:01 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 15:45:01 info: [Handler] Created handler for: humidity
+2025-10-23 15:45:01 info: [Handler] Created handler for: light
+2025-10-23 15:45:01 info: [Handler] Created handler for: pressure
+2025-10-23 15:45:01 info: [Handler] Created handler for: vibration
+2025-10-23 15:45:36 info: [Handler] Created handler for: temperature
+2025-10-23 15:45:36 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 15:45:36 info: [Handler] Created handler for: humidity
+2025-10-23 15:45:36 info: [Handler] Created handler for: light
+2025-10-23 15:45:36 info: [Handler] Created handler for: pressure
+2025-10-23 15:45:36 info: [Handler] Created handler for: vibration
+2025-10-23 15:46:28 info: [Handler] Created handler for: temperature
+2025-10-23 15:46:28 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 15:46:28 info: [Handler] Created handler for: humidity
+2025-10-23 15:46:28 info: [Handler] Created handler for: light
+2025-10-23 15:46:28 info: [Handler] Created handler for: pressure
+2025-10-23 15:46:28 info: [Handler] Created handler for: vibration
+2025-10-23 15:48:42 info: [Handler] Created handler for: temperature
+2025-10-23 15:48:42 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 15:48:42 info: [Handler] Created handler for: humidity
+2025-10-23 15:48:42 info: [Handler] Created handler for: light
+2025-10-23 15:48:42 info: [Handler] Created handler for: pressure
+2025-10-23 15:48:42 info: [Handler] Created handler for: vibration
+2025-10-23 15:50:11 info: [Handler] Stopped handler for: temperature
+2025-10-23 15:50:11 info: [Handler] Stopped handler for: humidity
+2025-10-23 15:50:11 info: [Handler] Stopped handler for: light
+2025-10-23 15:50:11 info: [Handler] Stopped handler for: pressure
+2025-10-23 15:50:11 info: [Handler] Stopped handler for: vibration
+2025-10-23 17:23:36 info: [Handler] Created handler for: temperature
+2025-10-23 17:23:36 info: [Handler] Created health handler for: 192.168.1.10
+2025-10-23 17:23:36 info: [Handler] Created handler for: humidity
+2025-10-23 17:23:36 info: [Handler] Created handler for: light
+2025-10-23 17:23:36 info: [Handler] Created handler for: pressure
+2025-10-23 17:23:36 info: [Handler] Created handler for: vibration
+2025-10-23 17:25:09 info: [Handler] Stopped handler for: temperature
+2025-10-23 17:25:09 info: [Handler] Stopped handler for: humidity
+2025-10-23 17:25:09 info: [Handler] Stopped handler for: light
+2025-10-23 17:25:09 info: [Handler] Stopped handler for: pressure
+2025-10-23 17:25:09 info: [Handler] Stopped handler for: vibration

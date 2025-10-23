@@ -1,0 +1,652 @@
+2025-10-23 15:30:46 info: [Slave] Initialized.
+2025-10-23 15:30:46 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:30:46 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:30:46 info: [Slave] Identification sent to master.
+2025-10-23 15:30:46 info: [Slave] Received configuration:
+2025-10-23 15:30:46 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:30:46 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:30:46 info: [Slave] Spawning handlers...
+2025-10-23 15:30:52 info: [Slave] Sent data for humidity:
+2025-10-23 15:30:53 info: [Slave] Sent data for temperature:
+2025-10-23 15:30:53 info: [Slave] Sent data for light:
+2025-10-23 15:30:53 info: [Slave] Sent data for vibration:
+2025-10-23 15:30:55 info: [Slave] Sent data for pressure:
+2025-10-23 15:30:56 info: [Slave] Sent health status:
+2025-10-23 15:30:57 info: [Slave] Sent data for humidity:
+2025-10-23 15:30:59 info: [Slave] Sent data for temperature:
+2025-10-23 15:30:59 info: [Slave] Sent data for light:
+2025-10-23 15:31:01 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:03 info: [Slave] Initialized.
+2025-10-23 15:37:03 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:37:03 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:37:03 info: [Slave] Identification sent to master.
+2025-10-23 15:37:03 info: [Slave] Received configuration:
+2025-10-23 15:37:03 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:37:03 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:37:03 info: [Slave] Spawning handlers...
+2025-10-23 15:37:08 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:09 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:10 info: [Slave] Sent data for light:
+2025-10-23 15:37:10 info: [Slave] Sent data for pressure:
+2025-10-23 15:37:11 info: [Slave] Sent data for humidity:
+2025-10-23 15:37:13 info: [Slave] Sent health status:
+2025-10-23 15:37:14 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:15 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:17 info: [Slave] Sent data for light:
+2025-10-23 15:37:18 info: [Slave] Sent data for pressure:
+2025-10-23 15:37:19 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:20 info: [Slave] Sent data for humidity:
+2025-10-23 15:37:21 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:23 info: [Slave] Sent health status:
+2025-10-23 15:37:24 info: [Slave] Sent data for light:
+2025-10-23 15:37:25 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:26 info: [Slave] Sent data for pressure:
+2025-10-23 15:37:27 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:28 info: [Slave] Sent data for humidity:
+2025-10-23 15:37:30 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:30 info: [Slave] Sent data for light:
+2025-10-23 15:37:33 info: [Slave] Sent health status:
+2025-10-23 15:37:33 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:34 info: [Slave] Sent data for pressure:
+2025-10-23 15:37:35 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:36 info: [Slave] Sent data for humidity:
+2025-10-23 15:37:37 info: [Slave] Sent data for light:
+2025-10-23 15:37:39 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:41 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:41 info: [Slave] Sent data for pressure:
+2025-10-23 15:37:43 info: [Slave] Sent health status:
+2025-10-23 15:37:44 info: [Slave] Sent data for light:
+2025-10-23 15:37:45 info: [Slave] Sent data for humidity:
+2025-10-23 15:37:45 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:46 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:49 info: [Slave] Sent data for pressure:
+2025-10-23 15:37:51 info: [Slave] Sent data for light:
+2025-10-23 15:37:51 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:52 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:53 info: [Slave] Sent health status:
+2025-10-23 15:37:53 info: [Slave] Sent data for humidity:
+2025-10-23 15:37:57 info: [Slave] Sent data for pressure:
+2025-10-23 15:37:57 info: [Slave] Sent data for temperature:
+2025-10-23 15:37:57 info: [Slave] Sent data for vibration:
+2025-10-23 15:37:58 info: [Slave] Sent data for light:
+2025-10-23 15:38:02 info: [Slave] Sent data for humidity:
+2025-10-23 15:38:02 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:03 info: [Slave] Sent health status:
+2025-10-23 15:38:03 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:04 info: [Slave] Sent data for pressure:
+2025-10-23 15:38:05 info: [Slave] Sent data for light:
+2025-10-23 15:38:08 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:09 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:10 info: [Slave] Sent data for humidity:
+2025-10-23 15:38:12 info: [Slave] Sent data for light:
+2025-10-23 15:38:12 info: [Slave] Sent data for pressure:
+2025-10-23 15:38:13 info: [Slave] Sent health status:
+2025-10-23 15:38:13 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:15 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:19 info: [Slave] Sent data for humidity:
+2025-10-23 15:38:19 info: [Slave] Sent data for light:
+2025-10-23 15:38:19 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:20 info: [Slave] Sent data for pressure:
+2025-10-23 15:38:21 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:23 info: [Slave] Sent health status:
+2025-10-23 15:38:24 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:26 info: [Slave] Sent data for light:
+2025-10-23 15:38:27 info: [Slave] Sent data for humidity:
+2025-10-23 15:38:27 info: [Slave] Sent data for pressure:
+2025-10-23 15:38:28 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:30 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:32 info: [Slave] Sent data for light:
+2025-10-23 15:38:33 info: [Slave] Sent health status:
+2025-10-23 15:38:34 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:35 info: [Slave] Sent data for pressure:
+2025-10-23 15:38:35 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:35 info: [Slave] Sent data for humidity:
+2025-10-23 15:38:39 info: [Slave] Sent data for light:
+2025-10-23 15:38:40 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:40 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:43 info: [Slave] Sent data for pressure:
+2025-10-23 15:38:43 info: [Slave] Sent health status:
+2025-10-23 15:38:44 info: [Slave] Sent data for humidity:
+2025-10-23 15:38:46 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:46 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:46 info: [Slave] Sent data for light:
+2025-10-23 15:38:50 info: [Slave] Sent data for pressure:
+2025-10-23 15:38:51 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:52 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:52 info: [Slave] Sent data for humidity:
+2025-10-23 15:38:53 info: [Slave] Sent health status:
+2025-10-23 15:38:53 info: [Slave] Sent data for light:
+2025-10-23 15:38:57 info: [Slave] Sent data for temperature:
+2025-10-23 15:38:58 info: [Slave] Sent data for vibration:
+2025-10-23 15:38:58 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:00 info: [Slave] Sent data for light:
+2025-10-23 15:39:01 info: [Slave] Sent data for humidity:
+2025-10-23 15:39:02 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:03 info: [Slave] Sent health status:
+2025-10-23 15:39:04 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:06 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:07 info: [Slave] Sent data for light:
+2025-10-23 15:39:08 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:09 info: [Slave] Sent data for humidity:
+2025-10-23 15:39:10 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:13 info: [Slave] Sent health status:
+2025-10-23 15:39:13 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:13 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:14 info: [Slave] Sent data for light:
+2025-10-23 15:39:16 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:17 info: [Slave] Sent data for humidity:
+2025-10-23 15:39:18 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:21 info: [Slave] Sent data for light:
+2025-10-23 15:39:21 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:22 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:23 info: [Slave] Sent health status:
+2025-10-23 15:39:24 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:26 info: [Slave] Sent data for humidity:
+2025-10-23 15:39:28 info: [Slave] Sent data for light:
+2025-10-23 15:39:28 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:29 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:29 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:33 info: [Slave] Sent health status:
+2025-10-23 15:39:34 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:34 info: [Slave] Sent data for humidity:
+2025-10-23 15:39:35 info: [Slave] Sent data for light:
+2025-10-23 15:39:35 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:36 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:40 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:40 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:41 info: [Slave] Sent data for light:
+2025-10-23 15:39:43 info: [Slave] Sent data for humidity:
+2025-10-23 15:39:43 info: [Slave] Sent health status:
+2025-10-23 15:39:44 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:46 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:46 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:48 info: [Slave] Sent data for light:
+2025-10-23 15:39:51 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:51 info: [Slave] Sent data for humidity:
+2025-10-23 15:39:52 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:52 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:53 info: [Slave] Sent health status:
+2025-10-23 15:39:55 info: [Slave] Sent data for light:
+2025-10-23 15:39:56 info: [Slave] Sent data for temperature:
+2025-10-23 15:39:58 info: [Slave] Sent data for vibration:
+2025-10-23 15:39:59 info: [Slave] Sent data for pressure:
+2025-10-23 15:39:59 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:02 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:02 info: [Slave] Sent data for light:
+2025-10-23 15:40:03 info: [Slave] Sent health status:
+2025-10-23 15:40:04 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:07 info: [Slave] Sent data for pressure:
+2025-10-23 15:40:07 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:08 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:09 info: [Slave] Sent data for light:
+2025-10-23 15:40:10 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:13 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:13 info: [Slave] Sent health status:
+2025-10-23 15:40:15 info: [Slave] Sent data for pressure:
+2025-10-23 15:40:16 info: [Slave] Sent data for light:
+2025-10-23 15:40:16 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:16 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:18 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:22 info: [Slave] Sent data for pressure:
+2025-10-23 15:40:23 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:23 info: [Slave] Sent data for light:
+2025-10-23 15:40:23 info: [Slave] Sent health status:
+2025-10-23 15:40:24 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:25 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:29 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:29 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:30 info: [Slave] Sent data for light:
+2025-10-23 15:40:30 info: [Slave] Sent data for pressure:
+2025-10-23 15:40:33 info: [Slave] Sent health status:
+2025-10-23 15:40:33 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:34 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:35 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:37 info: [Slave] Sent data for light:
+2025-10-23 15:40:38 info: [Slave] Sent data for pressure:
+2025-10-23 15:40:40 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:41 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:41 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:43 info: [Slave] Sent health status:
+2025-10-23 15:40:43 info: [Slave] Sent data for light:
+2025-10-23 15:40:45 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:45 info: [Slave] Sent data for pressure:
+2025-10-23 15:40:47 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:50 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:50 info: [Slave] Sent data for light:
+2025-10-23 15:40:51 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:53 info: [Slave] Sent data for vibration:
+2025-10-23 15:40:53 info: [Slave] Sent data for pressure:
+2025-10-23 15:40:53 info: [Slave] Sent health status:
+2025-10-23 15:40:56 info: [Slave] Sent data for temperature:
+2025-10-23 15:40:57 info: [Slave] Sent data for light:
+2025-10-23 15:40:58 info: [Slave] Sent data for humidity:
+2025-10-23 15:40:59 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:01 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:02 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:03 info: [Slave] Sent health status:
+2025-10-23 15:41:04 info: [Slave] Sent data for light:
+2025-10-23 15:41:05 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:07 info: [Slave] Sent data for humidity:
+2025-10-23 15:41:07 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:08 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:11 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:11 info: [Slave] Sent data for light:
+2025-10-23 15:41:12 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:13 info: [Slave] Sent health status:
+2025-10-23 15:41:15 info: [Slave] Sent data for humidity:
+2025-10-23 15:41:16 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:17 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:18 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:18 info: [Slave] Sent data for light:
+2025-10-23 15:41:23 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:23 info: [Slave] Sent health status:
+2025-10-23 15:41:23 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:24 info: [Slave] Sent data for humidity:
+2025-10-23 15:41:24 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:25 info: [Slave] Sent data for light:
+2025-10-23 15:41:29 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:29 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:31 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:32 info: [Slave] Sent data for light:
+2025-10-23 15:41:32 info: [Slave] Sent data for humidity:
+2025-10-23 15:41:33 info: [Slave] Sent health status:
+2025-10-23 15:41:34 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:35 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:39 info: [Slave] Sent data for light:
+2025-10-23 15:41:39 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:40 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:40 info: [Slave] Sent data for humidity:
+2025-10-23 15:41:41 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:43 info: [Slave] Sent health status:
+2025-10-23 15:41:45 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:46 info: [Slave] Sent data for light:
+2025-10-23 15:41:47 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:47 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:49 info: [Slave] Sent data for humidity:
+2025-10-23 15:41:50 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:52 info: [Slave] Sent data for light:
+2025-10-23 15:41:53 info: [Slave] Sent health status:
+2025-10-23 15:41:53 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:54 info: [Slave] Sent data for pressure:
+2025-10-23 15:41:56 info: [Slave] Sent data for temperature:
+2025-10-23 15:41:57 info: [Slave] Sent data for humidity:
+2025-10-23 15:41:59 info: [Slave] Sent data for vibration:
+2025-10-23 15:41:59 info: [Slave] Sent data for light:
+2025-10-23 15:42:01 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:02 info: [Slave] Sent data for pressure:
+2025-10-23 15:42:03 info: [Slave] Sent health status:
+2025-10-23 15:42:05 info: [Slave] Sent data for vibration:
+2025-10-23 15:42:06 info: [Slave] Sent data for humidity:
+2025-10-23 15:42:06 info: [Slave] Sent data for light:
+2025-10-23 15:42:07 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:10 info: [Slave] Sent data for pressure:
+2025-10-23 15:42:11 info: [Slave] Sent data for vibration:
+2025-10-23 15:42:12 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:13 info: [Slave] Sent health status:
+2025-10-23 15:42:13 info: [Slave] Sent data for light:
+2025-10-23 15:42:14 info: [Slave] Sent data for humidity:
+2025-10-23 15:42:17 info: [Slave] Sent data for pressure:
+2025-10-23 15:42:17 info: [Slave] Sent data for vibration:
+2025-10-23 15:42:17 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:20 info: [Slave] Sent data for light:
+2025-10-23 15:42:22 info: [Slave] Sent data for humidity:
+2025-10-23 15:42:23 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:23 info: [Slave] Sent health status:
+2025-10-23 15:42:23 info: [Slave] Sent data for vibration:
+2025-10-23 15:42:25 info: [Slave] Sent data for pressure:
+2025-10-23 15:42:39 info: [Slave] Initialized.
+2025-10-23 15:42:39 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:42:39 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:42:39 info: [Slave] Identification sent to master.
+2025-10-23 15:42:39 info: [Slave] Received configuration:
+2025-10-23 15:42:39 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:42:39 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:42:39 info: [Slave] Spawning handlers...
+2025-10-23 15:42:43 info: [Slave] Sent data for light:
+2025-10-23 15:42:44 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:44 info: [Slave] Sent data for humidity:
+2025-10-23 15:42:45 info: [Slave] Sent data for vibration:
+2025-10-23 15:42:48 info: [Slave] Sent data for light:
+2025-10-23 15:42:48 info: [Slave] Sent data for pressure:
+2025-10-23 15:42:48 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:49 info: [Slave] Sent data for humidity:
+2025-10-23 15:42:49 info: [Slave] Sent health status:
+2025-10-23 15:42:52 info: [Slave] Sent data for vibration:
+2025-10-23 15:42:52 info: [Slave] Sent data for light:
+2025-10-23 15:42:53 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:54 info: [Slave] Sent data for humidity:
+2025-10-23 15:42:57 info: [Slave] Sent data for light:
+2025-10-23 15:42:57 info: [Slave] Sent data for pressure:
+2025-10-23 15:42:58 info: [Slave] Sent data for temperature:
+2025-10-23 15:42:58 info: [Slave] Sent data for vibration:
+2025-10-23 15:42:59 info: [Slave] Sent data for humidity:
+2025-10-23 15:42:59 info: [Slave] Sent health status:
+2025-10-23 15:43:01 info: [Slave] Sent data for light:
+2025-10-23 15:43:02 info: [Slave] Sent data for temperature:
+2025-10-23 15:43:04 info: [Slave] Sent data for humidity:
+2025-10-23 15:43:04 info: [Slave] Sent data for vibration:
+2025-10-23 15:43:06 info: [Slave] Sent data for light:
+2025-10-23 15:43:06 info: [Slave] Sent data for pressure:
+2025-10-23 15:43:07 info: [Slave] Sent data for temperature:
+2025-10-23 15:43:09 info: [Slave] Sent data for humidity:
+2025-10-23 15:43:09 info: [Slave] Sent health status:
+2025-10-23 15:43:10 info: [Slave] Sent data for light:
+2025-10-23 15:43:10 info: [Slave] Sent data for vibration:
+2025-10-23 15:43:11 info: [Slave] Sent data for temperature:
+2025-10-23 15:43:50 info: [Slave] Initialized.
+2025-10-23 15:43:50 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:43:50 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:43:50 info: [Slave] Identification sent to master.
+2025-10-23 15:43:50 info: [Slave] Received configuration:
+2025-10-23 15:43:50 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:43:50 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:43:50 info: [Slave] Spawning handlers...
+2025-10-23 15:43:55 info: [Slave] Sent data for vibration: 23.59
+2025-10-23 15:43:56 info: [Slave] Sent data for humidity: 62.6
+2025-10-23 15:43:58 info: [Slave] Sent data for temperature: 59.63
+2025-10-23 15:43:58 info: [Slave] Sent data for light: 84.01
+2025-10-23 15:43:58 info: [Slave] Sent data for pressure: 27.13
+2025-10-23 15:43:59 info: [Slave] Sent data for vibration: 64.89
+2025-10-23 15:44:00 info: [Slave] Sent health status:
+2025-10-23 15:44:01 info: [Slave] Sent data for humidity: 43.09
+2025-10-23 15:44:04 info: [Slave] Sent data for vibration: 61.51
+2025-10-23 15:44:05 info: [Slave] Sent data for temperature: 35.74
+2025-10-23 15:44:05 info: [Slave] Sent data for light: 42.91
+2025-10-23 15:44:06 info: [Slave] Sent data for humidity: 65.51
+2025-10-23 15:44:06 info: [Slave] Sent data for pressure: 25.01
+2025-10-23 15:44:08 info: [Slave] Sent data for vibration: 67.86
+2025-10-23 15:44:10 info: [Slave] Sent health status:
+2025-10-23 15:44:11 info: [Slave] Sent data for humidity: 99.8
+2025-10-23 15:44:12 info: [Slave] Sent data for vibration: 89.26
+2025-10-23 15:44:13 info: [Slave] Sent data for temperature: 91.45
+2025-10-23 15:44:13 info: [Slave] Sent data for light: 97.06
+2025-10-23 15:44:15 info: [Slave] Sent data for pressure: 17.32
+2025-10-23 15:44:17 info: [Slave] Sent data for humidity: 14.71
+2025-10-23 15:44:17 info: [Slave] Sent data for vibration: 25.58
+2025-10-23 15:44:20 info: [Slave] Sent data for temperature: 54.03
+2025-10-23 15:44:20 info: [Slave] Sent data for light: 99.7
+2025-10-23 15:44:20 info: [Slave] Sent health status:
+2025-10-23 15:44:21 info: [Slave] Sent data for vibration: 95.71
+2025-10-23 15:44:22 info: [Slave] Sent data for humidity: 13.48
+2025-10-23 15:44:23 info: [Slave] Sent data for pressure: 95.8
+2025-10-23 15:44:26 info: [Slave] Sent data for vibration: 42.11
+2025-10-23 15:44:27 info: [Slave] Sent data for humidity: 84.37
+2025-10-23 15:44:28 info: [Slave] Sent data for temperature: 50.04
+2025-10-23 15:44:28 info: [Slave] Sent data for light: 32
+2025-10-23 15:44:30 info: [Slave] Sent data for vibration: 95.24
+2025-10-23 15:44:30 info: [Slave] Sent health status:
+2025-10-23 15:44:31 info: [Slave] Sent data for pressure: 3.64
+2025-10-23 15:44:32 info: [Slave] Sent data for humidity: 37.73
+2025-10-23 15:44:34 info: [Slave] Sent data for vibration: 3.04
+2025-10-23 15:44:35 info: [Slave] Sent data for temperature: 63.45
+2025-10-23 15:44:35 info: [Slave] Sent data for light: 61.2
+2025-10-23 15:44:38 info: [Slave] Sent data for humidity: 3.23
+2025-10-23 15:44:39 info: [Slave] Sent data for pressure: 32.98
+2025-10-23 15:44:39 info: [Slave] Sent data for vibration: 47.49
+2025-10-23 15:44:40 info: [Slave] Sent health status:
+2025-10-23 15:44:42 info: [Slave] Sent data for temperature: 17.81
+2025-10-23 15:44:42 info: [Slave] Sent data for light: 79.22
+2025-10-23 15:44:43 info: [Slave] Sent data for humidity: 89.43
+2025-10-23 15:44:43 info: [Slave] Sent data for vibration: 45.09
+2025-10-23 15:44:47 info: [Slave] Sent data for pressure: 67
+2025-10-23 15:44:48 info: [Slave] Sent data for vibration: 7.01
+2025-10-23 15:44:48 info: [Slave] Sent data for humidity: 55.34
+2025-10-23 15:44:50 info: [Slave] Sent data for temperature: 54.76
+2025-10-23 15:44:50 info: [Slave] Sent data for light: 1.73
+2025-10-23 15:44:50 info: [Slave] Sent health status:
+2025-10-23 15:44:52 info: [Slave] Sent data for vibration: 52.17
+2025-10-23 15:45:01 info: [Slave] Initialized.
+2025-10-23 15:45:01 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:45:01 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:45:01 info: [Slave] Identification sent to master.
+2025-10-23 15:45:01 info: [Slave] Received configuration:
+2025-10-23 15:45:01 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:45:01 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:45:01 info: [Slave] Spawning handlers...
+2025-10-23 15:45:05 info: [Slave] Sent data for light: 16.9
+2025-10-23 15:45:06 info: [Slave] Sent data for temperature: 28.01
+2025-10-23 15:45:07 info: [Slave] Sent data for vibration: 79.1
+2025-10-23 15:45:07 info: [Slave] Sent data for pressure: 43.86
+2025-10-23 15:45:09 info: [Slave] Sent data for humidity: 19.11
+2025-10-23 15:45:09 info: [Slave] Sent data for light: 98.33
+2025-10-23 15:45:10 info: [Slave] Sent data for temperature: 0.31
+2025-10-23 15:45:11 info: [Slave] Sent health status: [object Object]
+2025-10-23 15:45:12 info: [Slave] Sent data for vibration: 26.05
+2025-10-23 15:45:13 info: [Slave] Sent data for pressure: 95.44
+2025-10-23 15:45:14 info: [Slave] Sent data for light: 65.85
+2025-10-23 15:45:14 info: [Slave] Sent data for temperature: 63.09
+2025-10-23 15:45:17 info: [Slave] Sent data for humidity: 99.8
+2025-10-23 15:45:18 info: [Slave] Sent data for vibration: 96.1
+2025-10-23 15:45:18 info: [Slave] Sent data for light: 98.35
+2025-10-23 15:45:19 info: [Slave] Sent data for temperature: 10.98
+2025-10-23 15:45:19 info: [Slave] Sent data for pressure: 45.95
+2025-10-23 15:45:36 info: [Slave] Initialized.
+2025-10-23 15:45:36 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:45:36 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:45:36 info: [Slave] Identification sent to master.
+2025-10-23 15:45:36 info: [Slave] Received configuration:
+2025-10-23 15:45:36 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:45:36 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:45:36 info: [Slave] Spawning handlers...
+2025-10-23 15:45:43 info: [Slave] Sent data for pressure: 12.34
+2025-10-23 15:45:44 info: [Slave] Sent data for light: 94.06
+2025-10-23 15:45:44 info: [Slave] Sent data for vibration: 40.56
+2025-10-23 15:45:45 info: [Slave] Sent data for temperature: 12.96
+2025-10-23 15:45:45 info: [Slave] Sent data for humidity: 22.69
+2025-10-23 15:45:46 info: [Slave] Sent health status: [object Object]
+2025-10-23 15:45:51 info: [Slave] Sent data for pressure: 71.38
+2025-10-23 15:45:51 info: [Slave] Sent data for light: 97.85
+2025-10-23 15:45:51 info: [Slave] Sent data for vibration: 94.12
+2025-10-23 15:45:54 info: [Slave] Sent data for temperature: 38.02
+2025-10-23 15:45:54 info: [Slave] Sent data for humidity: 28.5
+2025-10-23 15:46:28 info: [Slave] Initialized.
+2025-10-23 15:46:28 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:46:28 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:46:28 info: [Slave] Identification sent to master.
+2025-10-23 15:46:28 info: [Slave] Received configuration:
+2025-10-23 15:46:28 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:46:28 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:46:28 info: [Slave] Spawning handlers...
+2025-10-23 15:46:33 info: [Slave] Sent data for light: 49.35
+2025-10-23 15:46:34 info: [Slave] Sent data for pressure: 7.19
+2025-10-23 15:46:35 info: [Slave] Sent data for vibration: 83.11
+2025-10-23 15:46:35 info: [Slave] Sent data for temperature: 0.77
+2025-10-23 15:46:35 info: [Slave] Sent data for humidity: 36.49
+2025-10-23 15:46:38 info: [Slave] Sent data for light: 16.39
+2025-10-23 15:46:38 info: [Slave] Sent health status: online
+2025-10-23 15:46:40 info: [Slave] Sent data for pressure: 22.55
+2025-10-23 15:46:42 info: [Slave] Sent data for vibration: 92.82
+2025-10-23 15:46:43 info: [Slave] Sent data for temperature: 81.09
+2025-10-23 15:46:43 info: [Slave] Sent data for humidity: 20.19
+2025-10-23 15:46:43 info: [Slave] Sent data for light: 21.03
+2025-10-23 15:46:46 info: [Slave] Sent data for pressure: 47.95
+2025-10-23 15:48:42 info: [Slave] Initialized.
+2025-10-23 15:48:42 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 15:48:42 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 15:48:42 info: [Slave] Identification sent to master.
+2025-10-23 15:48:42 info: [Slave] Received configuration:
+2025-10-23 15:48:42 info: [Slave] Configuration saved to C:\Internship\Master Slave Control\slave\slave_config.json
+2025-10-23 15:48:42 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:48:42 info: [Slave] Spawning handlers...
+2025-10-23 15:48:46 info: [Slave] Sent data for humidity: 88.94
+2025-10-23 15:48:48 info: [Slave] Sent data for pressure: 88.22
+2025-10-23 15:48:48 info: [Slave] Sent data for temperature: 28.33
+2025-10-23 15:48:50 info: [Slave] Sent data for vibration: 75.31
+2025-10-23 15:48:50 info: [Slave] Sent data for humidity: 16.22
+2025-10-23 15:48:51 info: [Slave] Sent data for light: 3.18
+2025-10-23 15:48:52 info: [Slave] Sent health status: online
+2025-10-23 15:48:54 info: [Slave] Sent data for pressure: 56.27
+2025-10-23 15:48:54 info: [Slave] Sent data for temperature: 36.36
+2025-10-23 15:48:54 info: [Slave] Sent data for humidity: 52.16
+2025-10-23 15:48:58 info: [Slave] Sent data for vibration: 27.98
+2025-10-23 15:48:59 info: [Slave] Sent data for humidity: 69.26
+2025-10-23 15:48:59 info: [Slave] Sent data for light: 71.35
+2025-10-23 15:49:00 info: [Slave] Sent data for pressure: 53.86
+2025-10-23 15:49:00 info: [Slave] Sent data for temperature: 74.97
+2025-10-23 15:49:02 info: [Slave] Sent health status: online
+2025-10-23 15:49:03 info: [Slave] Sent data for humidity: 32.49
+2025-10-23 15:49:06 info: [Slave] Sent data for pressure: 24.98
+2025-10-23 15:49:06 info: [Slave] Sent data for temperature: 66.33
+2025-10-23 15:49:06 info: [Slave] Sent data for vibration: 40.76
+2025-10-23 15:49:07 info: [Slave] Sent data for humidity: 39.42
+2025-10-23 15:49:08 info: [Slave] Sent data for light: 12.37
+2025-10-23 15:49:11 info: [Slave] Sent data for humidity: 46.82
+2025-10-23 15:49:12 info: [Slave] Sent data for pressure: 46.5
+2025-10-23 15:49:12 info: [Slave] Sent data for temperature: 22.35
+2025-10-23 15:49:12 info: [Slave] Sent health status: online
+2025-10-23 15:49:14 info: [Slave] Sent data for vibration: 93.36
+2025-10-23 15:49:15 info: [Slave] Sent data for humidity: 5.7
+2025-10-23 15:49:16 info: [Slave] Sent data for light: 12.41
+2025-10-23 15:49:17 info: [Slave] Sent data for pressure: 61.07
+2025-10-23 15:49:18 info: [Slave] Sent data for temperature: 56.57
+2025-10-23 15:49:20 info: [Slave] Sent data for humidity: 69.61
+2025-10-23 15:49:22 info: [Slave] Sent health status: online
+2025-10-23 15:49:22 info: [Slave] Sent data for vibration: 31.91
+2025-10-23 15:49:23 info: [Slave] Sent data for pressure: 90.75
+2025-10-23 15:49:24 info: [Slave] Sent data for temperature: 57.1
+2025-10-23 15:49:24 info: [Slave] Sent data for humidity: 31.11
+2025-10-23 15:49:25 info: [Slave] Sent data for light: 77.08
+2025-10-23 15:49:28 info: [Slave] Sent data for humidity: 27.52
+2025-10-23 15:49:29 info: [Slave] Sent data for pressure: 25.59
+2025-10-23 15:49:30 info: [Slave] Sent data for temperature: 80.87
+2025-10-23 15:49:30 info: [Slave] Sent data for vibration: 55.94
+2025-10-23 15:49:32 info: [Slave] Sent health status: online
+2025-10-23 15:49:32 info: [Slave] Sent data for humidity: 78.38
+2025-10-23 15:49:34 info: [Slave] Sent data for light: 27.27
+2025-10-23 15:49:35 info: [Slave] Sent data for pressure: 40.18
+2025-10-23 15:49:36 info: [Slave] Sent data for temperature: 96.7
+2025-10-23 15:49:36 info: [Slave] Sent data for humidity: 85.95
+2025-10-23 15:49:38 info: [Slave] Sent data for vibration: 65.74
+2025-10-23 15:49:41 info: [Slave] Sent data for humidity: 93.72
+2025-10-23 15:49:41 info: [Slave] Sent data for pressure: 66.17
+2025-10-23 15:49:42 info: [Slave] Sent data for temperature: 51.75
+2025-10-23 15:49:42 info: [Slave] Sent health status: online
+2025-10-23 15:49:42 info: [Slave] Sent data for light: 3.05
+2025-10-23 15:49:45 info: [Slave] Sent data for humidity: 41.67
+2025-10-23 15:49:46 info: [Slave] Sent data for vibration: 8.73
+2025-10-23 15:49:47 info: [Slave] Sent data for pressure: 64.78
+2025-10-23 15:49:48 info: [Slave] Sent data for temperature: 33.68
+2025-10-23 15:49:49 info: [Slave] Sent data for humidity: 30.29
+2025-10-23 15:49:51 info: [Slave] Sent data for light: 30.02
+2025-10-23 15:49:52 info: [Slave] Sent health status: online
+2025-10-23 15:49:53 info: [Slave] Sent data for pressure: 51.34
+2025-10-23 15:49:53 info: [Slave] Sent data for humidity: 4.6
+2025-10-23 15:49:53 info: [Slave] Sent data for temperature: 71.21
+2025-10-23 15:49:54 info: [Slave] Sent data for vibration: 22.29
+2025-10-23 15:49:57 info: [Slave] Sent data for humidity: 57.03
+2025-10-23 15:49:59 info: [Slave] Sent data for pressure: 47.75
+2025-10-23 15:49:59 info: [Slave] Sent data for temperature: 27.93
+2025-10-23 15:50:00 info: [Slave] Sent data for light: 65.77
+2025-10-23 15:50:01 info: [Slave] Sent data for humidity: 40.52
+2025-10-23 15:50:02 info: [Slave] Sent health status: online
+2025-10-23 15:50:02 info: [Slave] Sent data for vibration: 66.37
+2025-10-23 15:50:05 info: [Slave] Sent data for pressure: 90.19
+2025-10-23 15:50:05 info: [Slave] Sent data for temperature: 15.43
+2025-10-23 15:50:06 info: [Slave] Sent data for humidity: 56.9
+2025-10-23 15:50:08 info: [Slave] Sent data for light: 28.24
+2025-10-23 15:50:10 info: [Slave] Sent data for humidity: 51.87
+2025-10-23 15:50:10 info: [Slave] Sent data for vibration: 72.99
+2025-10-23 15:50:11 info: [Slave] Disconnected from Master. Stopping handlers.
+2025-10-23 15:50:11 info: [Slave] All active handlers have been stopped.
+2025-10-23 15:50:12 error: [Slave] Could not connect to Master: xhr poll error
+2025-10-23 17:23:36 info: [Slave] Initialized.
+2025-10-23 17:23:36 info: [Slave] Identified as: 192.168.1.10
+2025-10-23 17:23:36 info: [Slave] Connected to Master at http://localhost:4000
+2025-10-23 17:23:36 info: [Slave] Identification sent to master.
+2025-10-23 17:23:36 info: [Slave] Received configuration:
+2025-10-23 17:23:36 error: [Slave] Error saving config file: Cannot write to packaged file
+2025-10-23 17:23:36 info: [Slave] All active handlers have been stopped.
+2025-10-23 17:23:36 info: [Slave] Spawning handlers...
+2025-10-23 17:23:41 info: [Slave] Sent data for light: 61.91
+2025-10-23 17:23:42 info: [Slave] Sent data for pressure: 50.23
+2025-10-23 17:23:42 info: [Slave] Sent data for humidity: 21.4
+2025-10-23 17:23:42 info: [Slave] Sent data for temperature: 21.03
+2025-10-23 17:23:43 info: [Slave] Sent data for vibration: 30.71
+2025-10-23 17:23:45 info: [Slave] Sent data for light: 70.58
+2025-10-23 17:23:46 info: [Slave] Sent health status: online
+2025-10-23 17:23:48 info: [Slave] Sent data for pressure: 10.23
+2025-10-23 17:23:48 info: [Slave] Sent data for humidity: 20.66
+2025-10-23 17:23:48 info: [Slave] Sent data for temperature: 50.41
+2025-10-23 17:23:49 info: [Slave] Sent data for light: 78.81
+2025-10-23 17:23:50 info: [Slave] Sent data for vibration: 32.06
+2025-10-23 17:23:53 info: [Slave] Sent data for pressure: 75.89
+2025-10-23 17:23:53 info: [Slave] Sent data for humidity: 88.04
+2025-10-23 17:23:54 info: [Slave] Sent data for light: 68.21
+2025-10-23 17:23:54 info: [Slave] Sent data for temperature: 18.69
+2025-10-23 17:23:56 info: [Slave] Sent health status: online
+2025-10-23 17:23:57 info: [Slave] Sent data for vibration: 23.57
+2025-10-23 17:23:58 info: [Slave] Sent data for light: 9.74
+2025-10-23 17:23:59 info: [Slave] Sent data for pressure: 17.64
+2025-10-23 17:23:59 info: [Slave] Sent data for humidity: 72.97
+2025-10-23 17:24:00 info: [Slave] Sent data for temperature: 38.49
+2025-10-23 17:24:02 info: [Slave] Sent data for light: 39.31
+2025-10-23 17:24:04 info: [Slave] Sent data for vibration: 50.63
+2025-10-23 17:24:04 info: [Slave] Sent data for pressure: 64.4
+2025-10-23 17:24:04 info: [Slave] Sent data for humidity: 67.2
+2025-10-23 17:24:06 info: [Slave] Sent data for temperature: 50.41
+2025-10-23 17:24:06 info: [Slave] Sent health status: online
+2025-10-23 17:24:07 info: [Slave] Sent data for light: 94.24
+2025-10-23 17:24:10 info: [Slave] Sent data for pressure: 51.64
+2025-10-23 17:24:10 info: [Slave] Sent data for humidity: 64.76
+2025-10-23 17:24:10 info: [Slave] Sent data for vibration: 50.37
+2025-10-23 17:24:11 info: [Slave] Sent data for light: 25.3
+2025-10-23 17:24:12 info: [Slave] Sent data for temperature: 43.43
+2025-10-23 17:24:15 info: [Slave] Sent data for light: 65.25
+2025-10-23 17:24:15 info: [Slave] Sent data for pressure: 91.69
+2025-10-23 17:24:16 info: [Slave] Sent data for humidity: 61.1
+2025-10-23 17:24:16 info: [Slave] Sent health status: online
+2025-10-23 17:24:17 info: [Slave] Sent data for vibration: 69.24
+2025-10-23 17:24:17 info: [Slave] Sent data for temperature: 68.3
+2025-10-23 17:24:20 info: [Slave] Sent data for light: 41.08
+2025-10-23 17:24:21 info: [Slave] Sent data for pressure: 83.54
+2025-10-23 17:24:21 info: [Slave] Sent data for humidity: 29.79
+2025-10-23 17:24:23 info: [Slave] Sent data for temperature: 18.63
+2025-10-23 17:24:24 info: [Slave] Sent data for vibration: 21.16
+2025-10-23 17:24:24 info: [Slave] Sent data for light: 26.29
+2025-10-23 17:24:26 info: [Slave] Sent health status: online
+2025-10-23 17:24:27 info: [Slave] Sent data for pressure: 87.12
+2025-10-23 17:24:27 info: [Slave] Sent data for humidity: 38.02
+2025-10-23 17:24:28 info: [Slave] Sent data for light: 83.77
+2025-10-23 17:24:29 info: [Slave] Sent data for temperature: 93.36
+2025-10-23 17:24:31 info: [Slave] Sent data for vibration: 81.1
+2025-10-23 17:24:32 info: [Slave] Sent data for pressure: 91.3
+2025-10-23 17:24:32 info: [Slave] Sent data for humidity: 17.35
+2025-10-23 17:24:33 info: [Slave] Sent data for light: 81.21
+2025-10-23 17:24:35 info: [Slave] Sent data for temperature: 60.51
+2025-10-23 17:24:36 info: [Slave] Sent health status: online
+2025-10-23 17:24:37 info: [Slave] Sent data for light: 84.27
+2025-10-23 17:24:38 info: [Slave] Sent data for vibration: 54.51
+2025-10-23 17:24:38 info: [Slave] Sent data for pressure: 22.54
+2025-10-23 17:24:38 info: [Slave] Sent data for humidity: 88.66
+2025-10-23 17:24:41 info: [Slave] Sent data for temperature: 27.6
+2025-10-23 17:24:41 info: [Slave] Sent data for light: 80.55
+2025-10-23 17:24:43 info: [Slave] Sent data for pressure: 50.21
+2025-10-23 17:24:44 info: [Slave] Sent data for humidity: 54.51
+2025-10-23 17:24:44 info: [Slave] Sent data for vibration: 76.26
+2025-10-23 17:24:46 info: [Slave] Sent data for light: 19.02
+2025-10-23 17:24:46 info: [Slave] Sent health status: online
+2025-10-23 17:24:47 info: [Slave] Sent data for temperature: 41.64
+2025-10-23 17:24:49 info: [Slave] Sent data for pressure: 16.59
+2025-10-23 17:24:49 info: [Slave] Sent data for humidity: 10.38
+2025-10-23 17:24:50 info: [Slave] Sent data for light: 33.49
+2025-10-23 17:24:51 info: [Slave] Sent data for vibration: 21.63
+2025-10-23 17:24:53 info: [Slave] Sent data for temperature: 42.22
+2025-10-23 17:24:54 info: [Slave] Sent data for light: 82.31
+2025-10-23 17:24:55 info: [Slave] Sent data for pressure: 6.75
+2025-10-23 17:24:55 info: [Slave] Sent data for humidity: 99.61
+2025-10-23 17:24:56 info: [Slave] Sent health status: online
+2025-10-23 17:24:58 info: [Slave] Sent data for vibration: 10.26
+2025-10-23 17:24:58 info: [Slave] Sent data for temperature: 3.43
+2025-10-23 17:24:59 info: [Slave] Sent data for light: 84.91
+2025-10-23 17:25:00 info: [Slave] Sent data for pressure: 91.67
+2025-10-23 17:25:00 info: [Slave] Sent data for humidity: 0.04
+2025-10-23 17:25:03 info: [Slave] Sent data for light: 43.67
+2025-10-23 17:25:04 info: [Slave] Sent data for temperature: 47.06
+2025-10-23 17:25:05 info: [Slave] Sent data for vibration: 57.95
+2025-10-23 17:25:06 info: [Slave] Sent data for pressure: 16.19
+2025-10-23 17:25:06 info: [Slave] Sent data for humidity: 70.93
+2025-10-23 17:25:06 info: [Slave] Sent health status: online
+2025-10-23 17:25:07 info: [Slave] Sent data for light: 85.47
+2025-10-23 17:25:09 info: [Slave] Disconnected from Master. Stopping handlers.
+2025-10-23 17:25:09 info: [Slave] All active handlers have been stopped.
+2025-10-23 17:25:10 error: [Slave] Could not connect to Master: xhr poll error

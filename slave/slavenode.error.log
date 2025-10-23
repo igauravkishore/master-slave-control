@@ -1,0 +1,3 @@
+2025-10-23 15:50:12 error: [Slave] Could not connect to Master: xhr poll error
+2025-10-23 17:23:36 error: [Slave] Error saving config file: Cannot write to packaged file
+2025-10-23 17:25:10 error: [Slave] Could not connect to Master: xhr poll error
